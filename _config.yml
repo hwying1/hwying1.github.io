@@ -40,7 +40,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -55,6 +55,11 @@ prismjs:
   preprocess: true
   line_number: true
   tab_replace: ''
+prism_plugin:
+  mode: 'preprocess'      # readltime/preprocess
+  theme: 'tomorrow'
+  line_number: false      # default false
+  custom_css:
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -130,3 +135,9 @@ feed:
   content_limit: 140
   content_limit_delim: ' '
   order_by: -date
+
+wordCount:
+  enable: false  # 将这个值设置为 true 即可.
+  postWordCount: true
+  min2read: true
+  totalCount: true
