@@ -6,7 +6,7 @@
   <link href="http://hwying1.github.io/atom.xml" rel="self"/>
   
   <link href="http://hwying1.github.io/"/>
-  <updated>2023-02-03T09:14:22.285Z</updated>
+  <updated>2023-02-03T09:19:12.429Z</updated>
   <id>http://hwying1.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>csrf学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/csrf-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/csrf-xue-xi-bi-ji/</id>
+    <published>2023-02-03T09:15:16.000Z</published>
+    <updated>2023-02-03T09:19:12.429Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;csrf全称Cross Site Request</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="漏洞原理分析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+    <category term="csrf学习" scheme="http://hwying1.github.io/tags/csrf%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>文件上传学习笔记</title>
