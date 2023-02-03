@@ -6,7 +6,7 @@
   <link href="http://hwying1.github.io/atom.xml" rel="self"/>
   
   <link href="http://hwying1.github.io/"/>
-  <updated>2023-02-02T07:48:40.390Z</updated>
+  <updated>2023-02-03T08:01:20.556Z</updated>
   <id>http://hwying1.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xxe学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/xxe-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/xxe-xue-xi-bi-ji/</id>
+    <published>2023-02-03T07:17:12.000Z</published>
+    <updated>2023-02-03T08:01:20.556Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;0x00-什么是xml&quot;&gt;&lt;a href=&quot;#0x00-什么是xml&quot; class=&quot;headerlink&quot; title=&quot;0x00  什么是xml&quot;&gt;&lt;/a&gt;0x00 </summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="xxe漏洞学习" scheme="http://hwying1.github.io/tags/xxe%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="漏洞原理解析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
+    
+  </entry>
   
   <entry>
     <title>CVE-2017-18349</title>
