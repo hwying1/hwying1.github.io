@@ -6,7 +6,7 @@
   <link href="http://hwying1.github.io/atom.xml" rel="self"/>
   
   <link href="http://hwying1.github.io/"/>
-  <updated>2023-02-03T09:34:40.593Z</updated>
+  <updated>2023-02-04T09:28:15.970Z</updated>
   <id>http://hwying1.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>weblogic复现</title>
+    <link href="http://hwying1.github.io/2023/02/04/weblogic-fu-xian/"/>
+    <id>http://hwying1.github.io/2023/02/04/weblogic-fu-xian/</id>
+    <published>2023-02-04T06:15:59.000Z</published>
+    <updated>2023-02-04T09:28:15.970Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;weblogic弱口令&quot;&gt;&lt;a href=&quot;#weblogic弱口令&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞复现" scheme="http://hwying1.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+    <category term="漏洞复现" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    <category term="Java" scheme="http://hwying1.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>sql学习笔记</title>
