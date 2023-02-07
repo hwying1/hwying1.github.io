@@ -6,7 +6,7 @@
   <link href="http://hwying1.github.io/atom.xml" rel="self"/>
   
   <link href="http://hwying1.github.io/"/>
-  <updated>2023-02-07T07:46:08.970Z</updated>
+  <updated>2023-02-07T14:24:49.155Z</updated>
   <id>http://hwying1.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>内网渗透靶场学习之路</title>
+    <link href="http://hwying1.github.io/2023/02/07/nei-wang-shen-tou-ba-chang-xue-xi-zhi-lu/"/>
+    <id>http://hwying1.github.io/2023/02/07/nei-wang-shen-tou-ba-chang-xue-xi-zhi-lu/</id>
+    <published>2023-02-07T13:03:04.000Z</published>
+    <updated>2023-02-07T14:24:49.155Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;内网渗透靶场学习之路&quot;&gt;&lt;a href=&quot;#内网渗透靶场学习之路&quot; class=&quot;headerlink&quot; title=&quot;内网渗透靶场学习之路&quot;&gt;&lt;/a&gt;内网渗透靶场学习之路&lt;/h1&gt;&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="内网学习" scheme="http://hwying1.github.io/categories/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="内网" scheme="http://hwying1.github.io/tags/%E5%86%85%E7%BD%91/"/>
+    
+  </entry>
   
   <entry>
     <title>3层内网穿透搭建</title>
