@@ -6,7 +6,7 @@
   <link href="http://hwying1.github.io/atom.xml" rel="self"/>
   
   <link href="http://hwying1.github.io/"/>
-  <updated>2023-02-04T09:28:15.970Z</updated>
+  <updated>2023-02-07T07:46:08.970Z</updated>
   <id>http://hwying1.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>3层内网穿透搭建</title>
+    <link href="http://hwying1.github.io/2023/02/07/3-ceng-nei-wang-chuan-tou-da-jian/"/>
+    <id>http://hwying1.github.io/2023/02/07/3-ceng-nei-wang-chuan-tou-da-jian/</id>
+    <published>2023-02-07T06:50:37.000Z</published>
+    <updated>2023-02-07T07:46:08.970Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基于三层内网的网络穿透的搭建&quot;&gt;&lt;a href=&quot;#基于三层内网的网络穿透的搭建&quot; class=&quot;headerlink&quot; title=&quot;基于三层内网的网络穿透的搭建&quot;&gt;&lt;/a&gt;基于三层内网的网络穿透的搭建&lt;/h1&gt;&lt;p&gt;首先准备4台靶机,</summary>
+        
+      
+    
+    
+    
+    <category term="网络基础" scheme="http://hwying1.github.io/categories/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="网络穿透" scheme="http://hwying1.github.io/tags/%E7%BD%91%E7%BB%9C%E7%A9%BF%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>weblogic复现</title>
     <link href="http://hwying1.github.io/2023/02/04/weblogic-fu-xian/"/>
     <id>http://hwying1.github.io/2023/02/04/weblogic-fu-xian/</id>
     <published>2023-02-04T06:15:59.000Z</published>
-    <updated>2023-02-04T09:28:15.970Z</updated>
+    <updated>2023-02-04T16:39:36.211Z</updated>
     
     
       

