@@ -425,8 +425,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="CVE-2017-18349-FastJson-1-2-24-反序列化漏洞RCE"><a href="#CVE-2017-18349-FastJson-1-2-24-反序列化漏洞RCE" class="headerlink" title="CVE-2017-18349 FastJson 1.2.24 反序列化漏洞RCE"></a>CVE-2017-18349 FastJson 1.2.24 反序列化漏洞RCE</h1><h2 id="0x01漏洞原理"><a href="#0x01漏洞原理" class="headerlink" title="0x01漏洞原理"></a>0x01漏洞原理</h2><pre class="line-numbers language-none"><code class="language-none">fastjson在解析json对象时，会使用autoType实例化某一个具体的类，并调用set/get方法访问属性。
-漏洞出现在Fastjson autoType处理json对象时，没有对@type字段进行完整的安全性验证，我们可以传入危险的类并调用危险类连接远程RMI服务器，通过恶意类执行恶意代码，进而实现远程代码执行漏洞
-影响版本为fastjson &lt; 1.2.25<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+漏洞出现在Fastjson autoType处理json对象时，没有对@type字段进行完整的安全性验证，
+我们可以传入危险的类并调用危险类连接远程RMI服务器，通过恶意类执行恶意代码，进而实现远程代码执行漏洞
+影响版本为fastjson &lt; 1.2.25<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="0x02-漏洞环境搭建"><a href="#0x02-漏洞环境搭建" class="headerlink" title="0x02 漏洞环境搭建"></a>0x02 漏洞环境搭建</h2><p>这里用vulhub靶场的docker镜像进行，记得把java版本换成1.8.0_20<br>更换java版本：</p>
 <pre class="line-numbers language-none"><code class="language-none">curl http://www.joaomatosf.com/rnp/java_files/jdk-8u20-linux-x64.tar.gz -o jdk-8u20-linux-x64.tar.gz
@@ -483,9 +484,14 @@ mvn clean package -DskipTests<span aria-hidden="true" class="line-numbers-rows">
 <p>通过exp脚本反弹给nc一个shell</p>
 <p><img src="/images/10.png"></p>
 <h1 id="CNVD-2019-22238-fastjson反序列化漏洞"><a href="#CNVD-2019-22238-fastjson反序列化漏洞" class="headerlink" title="CNVD-2019-22238 fastjson反序列化漏洞"></a>CNVD-2019-22238 fastjson反序列化漏洞</h1><p><strong>漏洞原理</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">Fastjson提供了autotype功能，允许用户在反序列化数据中通过“@type”指定反序列化的类型，其次，Fastjson自定义的反序列化机制时会调用指定类中的setter方法及部分getter方法，那么当组件开启了autotype功能并且反序列化不可信数据时，攻击者可以构造数据，使目标应用的代码执行流程进入特定类的特定setter或者getter方法中，若指定类的指定方法中有可被恶意利用的逻辑（也就是通常所指的“Gadget”），则会造成一些严重的安全问题。并且在Fastjson 1.2.47及以下版本中，利用其缓存机制可实现对未开启autotype功能的绕过。
+<pre class="line-numbers language-none"><code class="language-none">Fastjson提供了autotype功能，允许用户在反序列化数据中通过“@type”指定反序列化的类型，
+其次，Fastjson自定义的反序列化机制时会调用指定类中的setter方法及部分getter方法，
+那么当组件开启了autotype功能并且反序列化不可信数据时，攻击者可以构造数据，
+使目标应用的代码执行流程进入特定类的特定setter或者getter方法中，
+若指定类的指定方法中有可被恶意利用的逻辑（也就是通常所指的“Gadget”），则会造成一些严重的安全问题。
+并且在Fastjson 1.2.47及以下版本中，利用其缓存机制可实现对未开启autotype功能的绕过。
 
-影响版本为 fastjson &lt; 1.2.47<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+影响版本为 fastjson &lt; 1.2.47<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>漏洞复现</strong></p>
 <p>这里用的是vulhub的1.2.47-rce</p>
