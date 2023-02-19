@@ -344,6 +344,19 @@ DMZ区域：
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -1312,48 +1325,46 @@ PC1（192.168.52.30和192.168.93.20）
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/02/07/nei-wang-shen-tou-ba-chang-xue-xi-zhi-lu/">
+                <a href="/2023/02/19/mian-shi-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="内网渗透靶场学习之路">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="面试总结">
                         
-                        <span class="card-title">内网渗透靶场学习之路</span>
+                        <span class="card-title">面试总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Here's something encrypted, password is required to continue reading.
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-19
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    内网学习
+                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
+                                    面试
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%86%85%E7%BD%91/">
-                        <span class="chip bg-color">内网</span>
+                    <a href="/tags/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">面试总结</span>
                     </a>
                     
                 </div>

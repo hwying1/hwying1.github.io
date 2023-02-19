@@ -335,6 +335,19 @@ csrf全称Cross Site Request Forgery，俗称跨站点请求伪造。攻击者�
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -367,12 +380,12 @@ csrf全称Cross Site Request Forgery，俗称跨站点请求伪造。攻击者�
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
-                                <span class="chip bg-color">漏洞原理分析</span>
-                            </a>
-                        
                             <a href="/tags/csrf%E5%AD%A6%E4%B9%A0/">
                                 <span class="chip bg-color">csrf学习</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+                                <span class="chip bg-color">漏洞原理分析</span>
                             </a>
                         
                     </div>
@@ -519,12 +532,12 @@ csrf全称Cross Site Request Forgery，俗称跨站点请求伪造。攻击者�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
-                                    <span class="chip bg-color">漏洞原理分析</span>
-                                </a>
-                            
                                 <a href="/tags/csrf%E5%AD%A6%E4%B9%A0/">
                                     <span class="chip bg-color">csrf学习</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/">
+                                    <span class="chip bg-color">漏洞原理分析</span>
                                 </a>
                             
                         </div>

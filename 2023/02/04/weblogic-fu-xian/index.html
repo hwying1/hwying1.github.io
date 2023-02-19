@@ -343,6 +343,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -520,7 +533,7 @@ SerializedSystemIni.dat是一个二进制文件，所以一定要用burpsuite来
 <pre class="line-numbers language-none"><code class="language-none">上传文件,然后一直点下一步即可,最后点击完成即可<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><img src="/images/uploadgodzilla.jpg"></p>
-<p><img src="/.io//"></p>
+<p><img src="/"></p>
 <p><img src="/images/next.jpg"></p>
 <pre class="line-numbers language-none"><code class="language-none">上传成功之后用godzilla连接，http://your-ip:7001/war包名/1.jsp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
