@@ -8,10 +8,11 @@
     <meta name="description" content="文件上传漏洞原理
 一些web应用程序中允许上传图片、视频、头像和许多其他类型的文件到服务器中。
 
-文件上传漏洞就是利用服务端代码对文件上传路径变量过滤不严格将可执行的文件上传到一个到服务器中 ，再通过URL去访问以执行恶意代码。
+文件上传漏洞就是利用服务端代码对文件上传路径变量过滤不严格将可执行的文件上传到一个到服务器中 ，
+再通过URL去访问以执行恶意代码。
 
 危害
-非">
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -58,9 +59,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Lifelong learning" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Lifelong learning" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -446,11 +447,13 @@
                 <p><strong>文件上传漏洞原理</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">一些web应用程序中允许上传图片、视频、头像和许多其他类型的文件到服务器中。
 
-文件上传漏洞就是利用服务端代码对文件上传路径变量过滤不严格将可执行的文件上传到一个到服务器中 ，再通过URL去访问以执行恶意代码。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+文件上传漏洞就是利用服务端代码对文件上传路径变量过滤不严格将可执行的文件上传到一个到服务器中 ，
+再通过URL去访问以执行恶意代码。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>危害</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">非法用户可以利用上传的恶意脚本文件控制整个网站，甚至控制服务器。
-这个恶意的脚本文件，又被称为WebShell，也可以将WebShell脚本称为一种网页后门，WebShell脚本具有非常强大的功能，比如查看服务器目录、服务器中的文件，执行系统命令等。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+这个恶意的脚本文件，又被称为WebShell，也可以将WebShell脚本称为一种网页后门，
+WebShell脚本具有非常强大的功能，比如查看服务器目录、服务器中的文件，执行系统命令等。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>防御</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">1. 文件扩展名服务端白名单效验
@@ -464,7 +467,8 @@
 <p>客户端检测（Javascript检测：<br>在网页上写一段Javascript脚本，效验文件上传的后缀名，有白名单形式也有黑名单形式。如果上传文件的后缀不被允许，则会弹窗告知，此时文件上传的数据包并没有发送到服务端，只是在客户端浏览器使用Javascript对数据包进行检测</p>
 <p>这时有两种方法可以绕过客户端Javascript的检测：</p>
 <pre class="line-numbers language-none"><code class="language-none">1. 使用浏览器插件，删除检测文件后缀的Javascript代码，然后上传文件即可绕过
-2. 首先把需要上传的文件后缀改成允许上传的文件类型，如jpg、png、gif等，绕过Javascript检测，再抓包，把后缀名改成可执行文件的后缀即可上传成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+2. 首先把需要上传的文件后缀改成允许上传的文件类型，如jpg、png、gif等，
+绕过Javascript检测，再抓包，把后缀名改成可执行文件的后缀即可上传成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>服务端检测（MINE类型检测）</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的因特网标准。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -474,8 +478,11 @@
 比如将php文件的Content-Type:application/octet-stream修改为image/jpeg、image/png、image/gif等就可以<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>常见MIMETYPE</p>
-<pre class="line-numbers language-none"><code class="language-none">audio/mpeg -&gt; .mp3 application/msword -&gt; .doc application/octet-stream -&gt; .exe application/pdf -&gt; .pdf application/x-javascript -&gt; .js application/x-rar 
--&gt; .rar application/zip -&gt; .zip image/gif -&gt; .gif image/jpeg -&gt; .jpg / .jpeg image/png -&gt; .png text/plain -&gt; .txt text/html -&gt; .html video/mp4 -&gt; .mp4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">audio/mpeg -&gt; .mp3 application/msword -&gt; .doc application/octet-stream 
+-&gt; .exe application/pdf -&gt; .pdf application/x-javascript -&gt; 
+.js application/x-rar -&gt; .rar application/zip -&gt; .zip image/gif 
+-&gt; .gif image/jpeg -&gt; .jpg / .jpeg image/png -&gt; .png text/plain 
+-&gt; .txt text/html -&gt; .html video/mp4 -&gt; .mp4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>服务端检测（目录路径检测）</strong><br>对目录路径的检测不够严谨而导致可以使用%00截断绕过进行攻击。<br>绕过方法:</p>
 <pre class="line-numbers language-none"><code class="language-none">例如：/111.php%00.gif/111.gif -&gt; /111.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -518,15 +525,21 @@
 <pre class="line-numbers language-none"><code class="language-none">例如：shell.php.qwe.asd -&gt;shell.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>Nginx解析漏洞</p>
-<pre class="line-numbers language-none"><code class="language-none">Nginx默认是以CGI的方式支持PHP解析的，普遍的做法是在Nginx配置文件中通过 正则匹配设置SCRIPT_FILENAME。当访问www.xxx.com/phpinfo.jpg/1.php这个 URL时，$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，然后构造成 SCRIPT_FILENAME传递给PHP CGI。
-原因是开启了 fix_pathinfo 这个选项，会触发 在PHP中的如下逻辑： PHP会认为SCRIPT_FILENAME是phpinfo.jpg，而1.php是PATH_INFO，所以就会 将phpinfo.jpg作为PHP文件来解析了。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">Nginx默认是以CGI的方式支持PHP解析的，普遍的做法是在Nginx配置文件中通过正则匹配设置SCRIPT_FILENAME。
+当访问www.xxx.com/phpinfo.jpg/1.php这个 URL时，
+$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，
+然后构造成 SCRIPT_FILENAME传递给PHP CGI。
+原因是开启了 fix_pathinfo 这个选项，会触发 在PHP中的如下逻辑： 
+PHP会认为SCRIPT_FILENAME是phpinfo.jpg，而1.php是PATH_INFO，
+所以就会 将phpinfo.jpg作为PHP文件来解析了。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>攻击方式</p>
 <pre class="line-numbers language-none"><code class="language-none">- 形式： www.xxxx.com/UploadFiles/image/1.jpg/1.php www.xxxx.com/UploadFiles/image/1.jpg%00.php www.xxxx.com/UploadFiles/image/1.jpg/%20\0.php
 - 另一种方法：上传一个名字为test.jpg，然后访问test.jpg/.php,在这个目录下就会生成一句话木马shell.php。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>IIS7.5解析漏洞</p>
-<pre class="line-numbers language-none"><code class="language-none">IIS7.5的漏洞与nginx的类似，都是由于php配置文件中，开启了 cgi.fix_pathinfo，而这并不是nginx或者iis7.5本身的漏洞。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">IIS7.5的漏洞与nginx的类似，都是由于php配置文件中，开启了 cgi.fix_pathinfo，
+而这并不是nginx或者iis7.5本身的漏洞。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><strong>竞争条件攻击</strong><br>一些网站上传文件的逻辑时先允许上传任意文件，然后检查上传文件的文件是否包含WebShell脚本，如果包含则删除该文件。<br>这里存在的问题是文件上传成功后和删除文件之间存在一个短暂的时间差（因为需要执行检查文件和删除文件的操作），攻击者可以利用这个时间差完成竞争条件的上传漏洞攻击。<br>攻击方法：</p>
 <pre class="line-numbers language-none"><code class="language-none">攻击者需要先上传一个WebShell脚本1.php，1.php的内容为生成一个新的WebShell脚本shell.php，1.php写入如下代码
@@ -535,7 +548,8 @@
     fputs(fopen("../shell.php", "w"),'&lt;?php @eval($_POST['cmd']); ?&gt;');
 ?&gt;
 """
-当1.php上传完成后，客户端立即访问1.php，则会在服务端当前目录下自动生成shell.php，这时攻击者就利用了时间差完成了WebShell的上传<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+当1.php上传完成后，客户端立即访问1.php，则会在服务端当前目录下自动生成shell.php，
+这时攻击者就利用了时间差完成了WebShell的上传<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>双文件上传</strong><br>本意为上传两个或多个文件去突破。上传点支持多文件上传，但是却只对第一个文件做了过滤。<br>利用方式：</p>
 <pre class="line-numbers language-none"><code class="language-none">- 在存在双文件上传漏洞的页面中，查看上传的页面。F12找到上传的post表单，action属性是指定上传检测页面，一般是写的绝对路径，比如：xxx.asp/xxx.php
@@ -553,17 +567,26 @@ name="form1" enctype="multipart/form‐data"&gt;
 - 第一个文件上传允许的文件类型（.jpg .png .gif 等），第二个上传文件是一句话木马或者WebShell脚本。这样就可以突破上传限制，成功上传木马到服务器。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>php3457</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">该项为apache专属。关键点在/etc/apache2/mods-available/php5.6.conf这个文件，满足.+\.ph(p[3457]?|t|tml)$，都会被当作php文件解析。
-在apache2目录下grep -r x-httpd-php /etc/apache2找到对应文件就能知道解析哪些后缀。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">该项为apache专属。关键点在/etc/apache2/mods-available/php5.6.conf这个文件，
+满足.+\.ph(p[3457]?|t|tml)$，都会被当作php文件解析。
+在apache2目录下grep -r x-httpd-php /etc/apache2找到对应文件就能知道解析哪些后缀。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>.htaccess文件攻击</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">.htaccess文件(或者"分布式配置文件"）提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。
+<pre class="line-numbers language-none"><code class="language-none">.htaccess文件(或者"分布式配置文件"）提供了针对目录改变配置的方法， 
+即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。
+作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。
 
-概述来说，htaccess文件是Apache服务器中的一个配置文件，它负责相关目录下的网页配置。通过htaccess文件，可以帮我们实现：网页301重定向、自定义404错误页面、改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能。
+概述来说，htaccess文件是Apache服务器中的一个配置文件，它负责相关目录下的网页配置。
+通过htaccess文件，可以帮我们实现：网页301重定向、自定义404错误页面、
+改变文件扩展名、允许/阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能。
 
-启用.htaccess，需要修改httpd.conf，启用AllowOverride，并可以用AllowOverride限制特定命令的使用。如果需要使用.htaccess以外的其他文件名，可以用AccessFileName指令来改变。例如，需要使用.config ，则可以在服务器配置文件中按以下方法配置：AccessFileName .config 。
+启用.htaccess，需要修改httpd.conf，启用AllowOverride，并可以用AllowOverride限制特定命令的使用。
+如果需要使用.htaccess以外的其他文件名，可以用AccessFileName指令来改变。
+例如，需要使用.config ，则可以在服务器配置文件中按以下方法配置：AccessFileName .config 。
 
-笼统地说，.htaccess可以帮我们实现包括：文件夹密码保护、用户自动重定向、自定义错误页面、改变你的文件扩展名、封禁特定IP地址的用户、只允许特定IP地址的用户、禁止目录列表，以及使用其他文件作为index文件等一些功能。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+笼统地说，.htaccess可以帮我们实现包括：文件夹密码保护、用户自动重定向、自定义错误页面、
+改变你的文件扩展名、封禁特定IP地址的用户、只允许特定IP地址的用户、禁止目录列表，
+以及使用其他文件作为index文件等一些功能。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>一般.htaccess可以用来留后门和针对黑名单绕过。在上传网站的根目录下，上传一个.htaccess文件即可。<br>绕过方法：</p>
 <pre class="line-numbers language-none"><code class="language-none">- 针对黑名单绕过
@@ -607,7 +630,8 @@ GIF89a
 &lt;?= @eval($_POST['cmd']);?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>绕过方法：</p>
-<pre class="line-numbers language-none"><code class="language-none">对渲染/加载测试的攻击方式是代码注入绕过。使用winhex在不破坏文件本身的渲染情况下找一个空白区进行填充代码，一般为图片的注释区。
+<pre class="line-numbers language-none"><code class="language-none">对渲染/加载测试的攻击方式是代码注入绕过。
+使用winhex在不破坏文件本身的渲染情况下找一个空白区进行填充代码，一般为图片的注释区。
 对二次渲染的攻击方式就是攻击文件加载器自身。例如：
 上传文件数据不完整的gif文件 -&gt; 触发报错imagecreatefromgif()函数
 上传文件数据不完整的png文件 -&gt; 触发报错imagecreatefrompng()函数
@@ -623,7 +647,9 @@ GIF89a
  }
  return $open_func($file); //变成imagecreatefrompng('/tmp/phpimage')
  }
-对文件加载器进行攻击，常见的就是溢出攻击。上传自己的恶意文件后，服务器上的文件加载器会主动进行加载测试，加载测试时被溢出攻击执行shellcode，比如access/mdb溢出。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+对文件加载器进行攻击，常见的就是溢出攻击。上传自己的恶意文件后，
+服务器上的文件加载器会主动进行加载测试，加载测试时被溢出攻击执行shellcode，
+比如access/mdb溢出。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>文件上传中的目录穿越漏洞</strong><br>攻击方式</p>
 <pre class="line-numbers language-none"><code class="language-none">形式：上传的文件会被解析为日志不能执行，给出了/uploads/xxx.php路径并且可以查询
