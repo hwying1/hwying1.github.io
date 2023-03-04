@@ -534,8 +534,10 @@ PHP会认为SCRIPT_FILENAME是phpinfo.jpg，而1.php是PATH_INFO，
 所以就会 将phpinfo.jpg作为PHP文件来解析了。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>攻击方式</p>
-<pre class="line-numbers language-none"><code class="language-none">- 形式： www.xxxx.com/UploadFiles/image/1.jpg/1.php www.xxxx.com/UploadFiles/image/1.jpg%00.php www.xxxx.com/UploadFiles/image/1.jpg/%20\0.php
-- 另一种方法：上传一个名字为test.jpg，然后访问test.jpg/.php,在这个目录下就会生成一句话木马shell.php。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">- 形式： www.xxxx.com/UploadFiles/image/1.jpg/1.php 
+www.xxxx.com/UploadFiles/image/1.jpg%00.php 
+www.xxxx.com/UploadFiles/image/1.jpg/%20\0.php
+- 另一种方法：上传一个名字为test.jpg，然后访问test.jpg/.php,在这个目录下就会生成一句话木马shell.php。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>IIS7.5解析漏洞</p>
 <pre class="line-numbers language-none"><code class="language-none">IIS7.5的漏洞与nginx的类似，都是由于php配置文件中，开启了 cgi.fix_pathinfo，
