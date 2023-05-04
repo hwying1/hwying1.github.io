@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Lifelong learning</title>
+  
+  <subtitle>ying</subtitle>
+  <link href="http://hwying1.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://hwying1.github.io/"/>
+  <updated>2023-05-04T14:25:32.518Z</updated>
+  <id>http://hwying1.github.io/</id>
+  
+  <author>
+    <name>ying</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>aaa</title>
+    <link href="http://hwying1.github.io/2023/05/04/aaa/"/>
+    <id>http://hwying1.github.io/2023/05/04/aaa/</id>
+    <published>2023-05-04T14:24:52.000Z</published>
+    <updated>2023-05-04T14:25:32.518Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;aaa&lt;/p&gt;
+&lt;p&gt;a&lt;br&gt;aaa&lt;/p&gt;
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>面试总结</title>
+    <link href="http://hwying1.github.io/2023/02/19/mian-shi-zong-jie/"/>
+    <id>http://hwying1.github.io/2023/02/19/mian-shi-zong-jie/</id>
+    <published>2023-02-19T05:17:24.000Z</published>
+    <updated>2023-03-13T08:31:45.088Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="面试" scheme="http://hwying1.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="面试总结" scheme="http://hwying1.github.io/tags/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内网渗透靶场学习之路</title>
+    <link href="http://hwying1.github.io/2023/02/07/nei-wang-shen-tou-ba-chang-xue-xi-zhi-lu/"/>
+    <id>http://hwying1.github.io/2023/02/07/nei-wang-shen-tou-ba-chang-xue-xi-zhi-lu/</id>
+    <published>2023-02-07T13:03:04.000Z</published>
+    <updated>2023-02-07T14:24:49.155Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;内网渗透靶场学习之路&quot;&gt;&lt;a href=&quot;#内网渗透靶场学习之路&quot; class=&quot;headerlink&quot; title=&quot;内网渗透靶场学习之路&quot;&gt;&lt;/a&gt;内网渗透靶场学习之路&lt;/h1&gt;&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="内网学习" scheme="http://hwying1.github.io/categories/%E5%86%85%E7%BD%91%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="内网" scheme="http://hwying1.github.io/tags/%E5%86%85%E7%BD%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3层内网穿透搭建</title>
+    <link href="http://hwying1.github.io/2023/02/07/3-ceng-nei-wang-chuan-tou-da-jian/"/>
+    <id>http://hwying1.github.io/2023/02/07/3-ceng-nei-wang-chuan-tou-da-jian/</id>
+    <published>2023-02-07T06:50:37.000Z</published>
+    <updated>2023-02-07T07:46:08.970Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基于三层内网的网络穿透的搭建&quot;&gt;&lt;a href=&quot;#基于三层内网的网络穿透的搭建&quot; class=&quot;headerlink&quot; title=&quot;基于三层内网的网络穿透的搭建&quot;&gt;&lt;/a&gt;基于三层内网的网络穿透的搭建&lt;/h1&gt;&lt;p&gt;首先准备4台靶机,</summary>
+        
+      
+    
+    
+    
+    <category term="网络基础" scheme="http://hwying1.github.io/categories/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="网络穿透" scheme="http://hwying1.github.io/tags/%E7%BD%91%E7%BB%9C%E7%A9%BF%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>weblogic复现</title>
+    <link href="http://hwying1.github.io/2023/02/04/weblogic-fu-xian/"/>
+    <id>http://hwying1.github.io/2023/02/04/weblogic-fu-xian/</id>
+    <published>2023-02-04T06:15:59.000Z</published>
+    <updated>2023-02-04T16:39:36.211Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;weblogic弱口令&quot;&gt;&lt;a href=&quot;#weblogic弱口令&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞复现" scheme="http://hwying1.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+    <category term="漏洞复现" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    <category term="Java" scheme="http://hwying1.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sql学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/sql-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/sql-xue-xi-bi-ji/</id>
+    <published>2023-02-03T09:30:34.000Z</published>
+    <updated>2023-02-03T09:34:40.593Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="漏洞原理分析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+    <category term="sql学习" scheme="http://hwying1.github.io/tags/sql%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sqlmap命令行参数解析</title>
+    <link href="http://hwying1.github.io/2023/02/03/sqlmap-ming-ling-xing-can-shu-jie-xi/"/>
+    <id>http://hwying1.github.io/2023/02/03/sqlmap-ming-ling-xing-can-shu-jie-xi/</id>
+    <published>2023-02-03T09:26:48.000Z</published>
+    <updated>2023-02-03T09:30:19.201Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;1. 基本参数&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;sqlmap --update  更新
+sqlmap -h </summary>
+        
+      
+    
+    
+    
+    <category term="sqlmap" scheme="http://hwying1.github.io/categories/sqlmap/"/>
+    
+    
+    <category term="sqlmap命令参数汇总" scheme="http://hwying1.github.io/tags/sqlmap%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E6%B1%87%E6%80%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ssrf学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/ssrf-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/ssrf-xue-xi-bi-ji/</id>
+    <published>2023-02-03T09:20:17.000Z</published>
+    <updated>2023-02-03T09:26:22.370Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;ssrf全称Server-side Request</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="漏洞原理分析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+    <category term="ssrf学习" scheme="http://hwying1.github.io/tags/ssrf%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>csrf学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/csrf-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/csrf-xue-xi-bi-ji/</id>
+    <published>2023-02-03T09:15:16.000Z</published>
+    <updated>2023-03-04T03:00:49.896Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;csrf全称Cross Site Request</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="csrf学习" scheme="http://hwying1.github.io/tags/csrf%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="漏洞原理分析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件上传学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/wen-jian-shang-chuan-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/wen-jian-shang-chuan-xue-xi-bi-ji/</id>
+    <published>2023-02-03T09:06:04.000Z</published>
+    <updated>2023-03-04T09:16:38.921Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;文件上传漏洞原理&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="漏洞原理分析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+    <category term="文件上传学习" scheme="http://hwying1.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文件包含原理</title>
+    <link href="http://hwying1.github.io/2023/02/03/wen-jian-bao-han-yuan-li/"/>
+    <id>http://hwying1.github.io/2023/02/03/wen-jian-bao-han-yuan-li/</id>
+    <published>2023-02-03T08:48:18.000Z</published>
+    <updated>2023-02-03T09:00:30.917Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;文件包含原理&quot;&gt;&lt;a href=&quot;#文件包含原理&quot; class=&quot;headerlink&quot; title=&quot;文件包含原理&quot;&gt;&lt;/a&gt;文件包含原理&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="漏洞原理分析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+    <category term="文件包含漏洞学习" scheme="http://hwying1.github.io/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xss学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/xss-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/xss-xue-xi-bi-ji/</id>
+    <published>2023-02-03T08:37:48.000Z</published>
+    <updated>2023-02-14T10:35:41.742Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;00×1-什么是XSS漏洞：&quot;&gt;&lt;a href=&quot;#00×1-什么是XSS漏洞：&quot; class=&quot;headerlink&quot; title=&quot;00×1 什么是XSS漏洞：&quot;&gt;&lt;/a&gt;00×1 什么是XSS漏洞：&lt;/h3&gt;&lt;pre class=&quot;line-numbers</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="漏洞原理分析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+    <category term="xss漏洞学习" scheme="http://hwying1.github.io/tags/xss%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xxe学习笔记</title>
+    <link href="http://hwying1.github.io/2023/02/03/xxe-xue-xi-bi-ji/"/>
+    <id>http://hwying1.github.io/2023/02/03/xxe-xue-xi-bi-ji/</id>
+    <published>2023-02-03T07:17:12.000Z</published>
+    <updated>2023-02-03T08:42:40.181Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;0x00-什么是xml&quot;&gt;&lt;a href=&quot;#0x00-什么是xml&quot; class=&quot;headerlink&quot; title=&quot;0x00  什么是xml&quot;&gt;&lt;/a&gt;0x00 </summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记总结" scheme="http://hwying1.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="xxe漏洞学习" scheme="http://hwying1.github.io/tags/xxe%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="漏洞原理解析" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://hwying1.github.io/2023/02/02/hello-world/"/>
+    <id>http://hwying1.github.io/2023/02/02/hello-world/</id>
+    <published>2023-02-02T09:08:09.879Z</published>
+    <updated>2023-02-02T09:08:09.893Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>fastjson漏洞复现</title>
+    <link href="http://hwying1.github.io/2023/02/01/fastjson1-2-24rce-fu-xian/"/>
+    <id>http://hwying1.github.io/2023/02/01/fastjson1-2-24rce-fu-xian/</id>
+    <published>2023-02-01T06:32:57.000Z</published>
+    <updated>2023-02-12T07:22:24.779Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;CVE-2017-18349-FastJson-1-2-24-反序列化漏洞RCE&quot;&gt;&lt;a href=&quot;#CVE-2017-18349-FastJson-1-2-24-反序列化漏洞RCE&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="漏洞复现" scheme="http://hwying1.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+    <category term="漏洞复现" scheme="http://hwying1.github.io/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    <category term="Java" scheme="http://hwying1.github.io/tags/Java/"/>
+    
+  </entry>
+  
+</feed>
